@@ -45,10 +45,9 @@ export default function ProfileCard() {
         avatarUrl: null,
         statusText: "checking discord..."
     });
-    const [localAvatarUrl, setLocalAvatarUrl] = useState("/pfps/default.png");
+    const [localAvatarUrl, setLocalAvatarUrl] = useState<string | null>(null);
     const [lastUpdate, setLastUpdate] = useState<LastUpdate | null>(null);
     const [showDiscordAvatar, setShowDiscordAvatar] = useState(false);
-    const [localAvatarFailed, setLocalAvatarFailed] = useState(false);
     const [discordAvatarFailed, setDiscordAvatarFailed] = useState(false);
 
     useEffect(
@@ -60,7 +59,7 @@ export default function ProfileCard() {
             let timer: number;
 
             /**
-             * Chooses a local avatar once per page load while retaining a reliable fallback.
+             * Chooses only server-confirmed avatar paths so missing files cannot break the profile.
              */
             async function loadLocalAvatar() {
                 try {
@@ -69,7 +68,7 @@ export default function ProfileCard() {
                     if (!response.ok || !Array.isArray(paths) || paths.length === 0) return;
                     if (active) setLocalAvatarUrl(paths[Math.floor(Math.random() * paths.length)]);
                 } catch {
-                    // A failed discovery request should not replace the known-good default image.
+                    // The built-in computer icon remains available when avatar discovery fails.
                 }
             }
 
@@ -126,11 +125,7 @@ export default function ProfileCard() {
     );
 
     const discordAvatarUrl = discordAvatarFailed ? null : discord.avatarUrl;
-    const avatarUrl = showDiscordAvatar
-        ? discordAvatarUrl
-        : localAvatarFailed
-          ? null
-          : localAvatarUrl;
+    const avatarUrl = showDiscordAvatar ? discordAvatarUrl : localAvatarUrl;
     const avatarAlt = showDiscordAvatar ? "Hazel's Discord avatar" : "Hazel's profile picture";
 
     return (
@@ -158,7 +153,7 @@ export default function ProfileCard() {
                                 alt={avatarAlt}
                                 onError={() => {
                                     if (showDiscordAvatar) setDiscordAvatarFailed(true);
-                                    else setLocalAvatarFailed(true);
+                                    else setLocalAvatarUrl(null);
                                 }}
                             />
                         ) : (
