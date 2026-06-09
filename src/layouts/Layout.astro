@@ -1,0 +1,92 @@
+---
+import "../styles/global.css";
+import site from "../config/site.json";
+
+interface Props {
+    title?: string;
+}
+
+const { title = site.meta.title } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, site.meta.siteUrl).toString();
+const socialImageUrl = new URL(site.meta.image, site.meta.siteUrl).toString();
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": `${site.meta.siteUrl}/#website`,
+            url: site.meta.siteUrl,
+            name: site.meta.title,
+            description: site.meta.description,
+            inLanguage: "en",
+            author: { "@id": `${site.meta.siteUrl}/#hazel` }
+        },
+        {
+            "@type": "ProfilePage",
+            "@id": `${site.meta.siteUrl}/#profile`,
+            url: site.meta.siteUrl,
+            name: site.meta.title,
+            description: site.meta.description,
+            mainEntity: { "@id": `${site.meta.siteUrl}/#hazel` }
+        },
+        {
+            "@type": "Person",
+            "@id": `${site.meta.siteUrl}/#hazel`,
+            name: site.person.name,
+            alternateName: site.person.alternateName,
+            email: site.person.email,
+            url: site.meta.siteUrl,
+            sameAs: site.person.sameAs
+        }
+    ]
+};
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="theme-color" content={site.meta.themeColor} />
+        <meta name="description" content={site.meta.description} />
+        <meta name="author" content={site.meta.author} />
+        <meta name="keywords" content={site.meta.keywords.join(", ")} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta name="application-name" content={site.meta.title} />
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="icon" href="/pfp.png" type="image/png" />
+
+        <meta property="og:type" content="profile" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={site.meta.description} />
+        <meta property="og:site_name" content={site.meta.title} />
+        <meta property="og:locale" content={site.meta.locale} />
+        <meta property="og:image" content={socialImageUrl} />
+        <meta property="og:image:secure_url" content={socialImageUrl} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={site.meta.imageAlt} />
+        <meta property="profile:username" content={site.person.alternateName} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={site.meta.description} />
+        <meta name="twitter:image" content={socialImageUrl} />
+        <meta name="twitter:image:alt" content={site.meta.imageAlt} />
+        <meta name="twitter:creator" content="@hazelcaffed" />
+
+        <title>{title}</title>
+        <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DotGothic16&family=VT323&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>

@@ -1,0 +1,41 @@
+{
+    "meta": {
+        "title": "Hazel's website",
+        "description": "Hazelcaffe's personal website ^-^",
+        "themeColor": "#ffd9ea",
+        "siteUrl": "https://qwq.sh",
+        "locale": "en_US",
+        "author": "Hazel",
+        "image": "/pfp.png",
+        "imageAlt": "Hazelcaffe's profile picture",
+        "keywords": ["Hazelcaffe"]
+    },
+    "person": {
+        "name": "Hazel",
+        "alternateName": "hazelcaffe",
+        "email": "mailto:me@skylvi.net",
+        "sameAs": [
+            "https://github.com/hazelcaffe",
+            "https://discord.com/users/1434354440537772087",
+            "https://tiktok.com/@hazelcaffe",
+            "https://instagram.com/@hazelcaffe",
+            "https://x.com/@hazelcaffed",
+            "https://www.youtube.com/@hazelcaffe",
+            "https://steamcommunity.com/id/hazelcaffe"
+        ]
+    },
+    "header": {
+        "url": "https://qwq.sh",
+        "name": "Hazel's",
+        "accent": "website",
+        "subtitle": "˚˖𓍢ִ໋🌷͙֒✧˚.🎀༘⋆ ୭  🧷 ✧ ˚.  ᵎᵎ  🎀"
+    },
+    "profile": {
+        "greeting": "Hi, i'm Hazel!",
+        "summary": "16yo highschool junior with a few nerdy interests.",
+        "pronouns": "she / her"
+    },
+    "stats": {
+        "since": "03.14.2026"
+    }
+}

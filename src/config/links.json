@@ -1,0 +1,68 @@
+[
+    {
+        "label": "guest book",
+        "detail": "visit here!",
+        "href": "https://hazelcaffe.atabook.org",
+        "icon": "/icons/book.svg"
+    },
+    {
+        "label": "file download",
+        "detail": "visit here!",
+        "href": "https://bin.skylvi.net",
+        "icon": "/icons/download.svg"
+    },
+    {
+        "label": "email",
+        "detail": "me@skylvi.net",
+        "href": "mailto:me@skylvi.net",
+        "icon": "/icons/mail.svg"
+    },
+    {
+        "label": "github",
+        "detail": "@hazelcaffe",
+        "href": "https://github.com/hazelcaffe",
+        "icon": "/icons/github.svg"
+    },
+    {
+        "label": "discord",
+        "detail": "@hazelcaffe",
+        "href": "https://discord.com/users/1434354440537772087",
+        "icon": "/icons/discord.svg"
+    },
+    {
+        "label": "tiktok",
+        "detail": "@hazelcaffe",
+        "href": "https://tiktok.com/@hazelcaffe",
+        "icon": "/icons/tiktok.svg"
+    },
+    {
+        "label": "instagram",
+        "detail": "@hazelcaffe",
+        "href": "https://instagram.com/@hazelcaffe",
+        "icon": "/icons/instagram.svg"
+    },
+    {
+        "label": "twitter",
+        "detail": "@hazelcaffed",
+        "href": "https://x.com/@hazelcaffed",
+        "icon": "/icons/x.svg"
+    },
+    {
+        "label": "youtube",
+        "detail": "@hazelcaffe",
+        "href": "https://www.youtube.com/@hazelcaffe",
+        "icon": "/icons/youtube.svg"
+    },
+    {
+        "label": "steam",
+        "detail": "@hazelcaffe",
+        "href": "https://steamcommunity.com/id/hazelcaffe",
+        "icon": "/icons/steam.svg"
+    },
+    {
+        "label": "last.fm",
+        "detail": "@skylvi",
+        "href": "https://www.last.fm/user/skylvi",
+        "icon": "/icons/lastfm.svg"
+    }
+]

@@ -1,0 +1,59 @@
+---
+import About, { frontmatter } from "../content/about.md";
+import ButtonGrid from "../components/ButtonGrid";
+import Header from "../components/Header.astro";
+import LastFmCard from "../components/LastFmCard";
+import ProfileCard from "../components/ProfileCard";
+import SocialLinks from "../components/SocialLinks.astro";
+import VisitorCounter from "../components/VisitorCounter";
+import Layout from "../layouts/Layout.astro";
+
+const about = frontmatter as {
+    eyebrow: string;
+    title: string;
+};
+---
+
+<Layout>
+    <div class="page-shell">
+        <Header />
+
+        <main id="home" class="desktop-grid">
+            <aside class="left-column">
+                <ProfileCard client:load />
+                <VisitorCounter client:load />
+                <section class="window" id="collections">
+                    <div class="window-body">
+                        <div class="button-grid" aria-live="polite">
+                            <ButtonGrid client:load />
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+            <section class="center-column">
+                <article class="window welcome-window">
+                    <div class="window-body">
+                        <div class="welcome-heading">
+                            <div>
+                                <p class="eyebrow">{about.eyebrow}</p>
+                                <h2>{about.title}</h2>
+                            </div>
+                            <div class="cat-icon" aria-hidden="true">🐈</div>
+                        </div>
+                        <div class="divider"></div>
+                    <div class="about-content">
+                        <About />
+                    </div>
+                </div>
+            </article>
+
+            </section>
+
+            <aside class="right-column">
+                <LastFmCard client:load />
+                <SocialLinks />
+            </aside>
+        </main>
+    </div>
+</Layout>

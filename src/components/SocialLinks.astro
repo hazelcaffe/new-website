@@ -1,0 +1,29 @@
+---
+import links from "../config/links.json";
+---
+
+<section class="window" id="links">
+    <div class="window-body cool-links">
+        {
+            links.map((link) => (
+                <a
+                    href={link.href}
+                    target={
+                        link.href.startsWith("mailto:") ? undefined : "_blank"
+                    }
+                    rel={
+                        link.href.startsWith("mailto:")
+                            ? undefined
+                            : "noreferrer"
+                    }
+                >
+                    <img src={link.icon} alt="" />
+                    <span>
+                        <b>{link.label}</b>
+                        <small>{link.detail}</small>
+                    </span>
+                </a>
+            ))
+        }
+    </div>
+</section>
