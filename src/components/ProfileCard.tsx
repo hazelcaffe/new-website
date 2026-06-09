@@ -2,14 +2,22 @@ import { useEffect, useState } from "react";
 import site from "../config/site.json";
 
 type DiscordData = {
-    statusText: string | null;
     avatarUrl: string | null;
+    statusText: string | null;
+};
+
+type LastUpdate = {
+    text: string;
+    updatedAt: string;
 };
 
 const transColors = ["trans-pink", "trans-blue", "trans-white"];
 const lesbianColors = ["lesbian-orange", "lesbian-white", "lesbian-pink"];
 
-function ColoredText({ text, colors }: { text: string; colors: string[] }) {
+/**
+ * Alternates decorative color classes without counting spaces.
+ */
+function ColoredText({ text, colors }: { text: string; colors: string[] }): React.JSX.Element[] {
     let visibleIndex = 0;
     let tokenIndex = 0;
 
@@ -17,9 +25,7 @@ function ColoredText({ text, colors }: { text: string; colors: string[] }) {
         const key = `${character}-${tokenIndex}`;
         tokenIndex += 1;
 
-        if (character === " ") {
-            return <span key={key}> </span>;
-        }
+        if (character === " ") return <span key={key}> </span>;
 
         const className = colors[visibleIndex % colors.length];
         visibleIndex += 1;
@@ -31,49 +37,100 @@ function ColoredText({ text, colors }: { text: string; colors: string[] }) {
     });
 }
 
+/**
+ * Combines static profile details with independently refreshed site and Discord data.
+ */
 export default function ProfileCard() {
     const [discord, setDiscord] = useState<DiscordData>({
-        statusText: "checking discord...",
-        avatarUrl: null
+        avatarUrl: null,
+        statusText: "checking discord..."
     });
+    const [localAvatarUrl, setLocalAvatarUrl] = useState("/pfps/default.png");
+    const [lastUpdate, setLastUpdate] = useState<LastUpdate | null>(null);
     const [showDiscordAvatar, setShowDiscordAvatar] = useState(false);
     const [localAvatarFailed, setLocalAvatarFailed] = useState(false);
     const [discordAvatarFailed, setDiscordAvatarFailed] = useState(false);
 
-    useEffect(() => {
-        let active = true;
-        let timer: number;
+    useEffect(
+        /**
+         * Coordinates independent profile feeds under one lifecycle to prevent stale state writes.
+         */
+        function synchronizeProfileData() {
+            let active = true;
+            let timer: number;
 
-        async function poll() {
-            try {
-                const response = await fetch("/api/discord", { cache: "no-store" });
-                const data = await response.json();
-                if (!response.ok) throw new Error(data.error || "Discord unavailable");
-                if (active) {
-                    setDiscord(data);
-                    setDiscordAvatarFailed(false);
+            /**
+             * Chooses a local avatar once per page load while retaining a reliable fallback.
+             */
+            async function loadLocalAvatar() {
+                try {
+                    const response = await fetch("/api/pfp");
+                    const paths = await response.json();
+                    if (!response.ok || !Array.isArray(paths) || paths.length === 0) return;
+                    if (active) setLocalAvatarUrl(paths[Math.floor(Math.random() * paths.length)]);
+                } catch {
+                    // A failed discovery request should not replace the known-good default image.
                 }
-            } catch (error) {
-                if (active) {
-                    setDiscord((current) => ({
-                        ...current,
-                        statusText: error instanceof Error ? error.message : "Discord unavailable"
-                    }));
-                }
-            } finally {
-                if (active) timer = window.setTimeout(poll, 2000);
             }
-        }
 
-        void poll();
-        return () => {
-            active = false;
-            window.clearTimeout(timer);
-        };
-    }, []);
+            /**
+             * Refreshes Discord presence without allowing a stale component to receive state updates.
+             */
+            async function poll() {
+                try {
+                    const response = await fetch("/api/discord", { cache: "no-store" });
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.error || "Discord unavailable");
+                    if (active) {
+                        setDiscord(data);
+                        setDiscordAvatarFailed(false);
+                    }
+                } catch (error) {
+                    if (active) {
+                        setDiscord((current) => ({
+                            ...current,
+                            statusText:
+                                error instanceof Error ? error.message : "Discord unavailable"
+                        }));
+                    }
+                } finally {
+                    if (active) timer = window.setTimeout(poll, 15_000);
+                }
+            }
+
+            /**
+             * Refreshes bot-managed text separately so Discord outages do not hide site updates.
+             */
+            async function loadLastUpdate() {
+                try {
+                    const response = await fetch("/api/last-update", { cache: "no-store" });
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.error || "Last update unavailable");
+                    if (active) setLastUpdate(data);
+                } catch {
+                    // Hiding stale or unavailable update text is less misleading than inventing a value.
+                }
+            }
+
+            void loadLocalAvatar();
+            void loadLastUpdate();
+            void poll();
+            const updateTimer = window.setInterval(loadLastUpdate, 30_000);
+            return () => {
+                active = false;
+                window.clearTimeout(timer);
+                window.clearInterval(updateTimer);
+            };
+        },
+        []
+    );
 
     const discordAvatarUrl = discordAvatarFailed ? null : discord.avatarUrl;
-    const avatarUrl = showDiscordAvatar ? discordAvatarUrl : localAvatarFailed ? null : "/pfp.png";
+    const avatarUrl = showDiscordAvatar
+        ? discordAvatarUrl
+        : localAvatarFailed
+          ? null
+          : localAvatarUrl;
     const avatarAlt = showDiscordAvatar ? "Hazel's Discord avatar" : "Hazel's profile picture";
 
     return (
@@ -100,23 +157,20 @@ export default function ProfileCard() {
                                 src={avatarUrl}
                                 alt={avatarAlt}
                                 onError={() => {
-                                    if (showDiscordAvatar) {
-                                        setDiscordAvatarFailed(true);
-                                    } else {
-                                        setLocalAvatarFailed(true);
-                                    }
+                                    if (showDiscordAvatar) setDiscordAvatarFailed(true);
+                                    else setLocalAvatarFailed(true);
                                 }}
                             />
                         ) : (
                             <>
                                 <div className="computer">
                                     <div className="screen">
-                                        <span>^‿^</span>
+                                        <span>^_^</span>
                                     </div>
                                     <div className="base" />
                                 </div>
-                                <span className="avatar-star a1">✦</span>
-                                <span className="avatar-star a2">✧</span>
+                                <span className="avatar-star a1">+</span>
+                                <span className="avatar-star a2">*</span>
                             </>
                         )}
                     </button>
@@ -142,6 +196,16 @@ export default function ProfileCard() {
                         <dd>{discord.statusText || "no custom status"}</dd>
                     </div>
                 </dl>
+
+                {lastUpdate && (
+                    <aside
+                        className="last-update"
+                        title={`Last updated ${new Date(lastUpdate.updatedAt).toLocaleString()}`}
+                    >
+                        <strong>last update</strong>
+                        <p>{lastUpdate.text}</p>
+                    </aside>
+                )}
             </div>
         </section>
     );

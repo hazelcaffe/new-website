@@ -1,0 +1,32 @@
+---
+import Header from "../components/Header.astro";
+import ProjectCard from "../components/ProjectCard";
+import projects from "../config/projects.json";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Projects | Hazel">
+    <div class="page-shell">
+        <Header />
+        <main class="projects-page">
+            <header class="projects-heading window">
+                <div class="projects-heading-copy">
+                    <p class="eyebrow">mreow</p>
+                    <h2>Projects</h2>
+                    <p>
+                        I like making things :D
+                        <br>
+                        Not all are great, or useful, but I try!!
+                    </p>
+                </div>
+                <div class="projects-count" aria-label={`${projects.length} projects`}>
+                    <strong>{String(projects.length).padStart(2, "0")}</strong>
+                    <span>projects</span>
+                </div>
+            </header>
+            <div class="projects-grid">
+                {projects.map((project) => <ProjectCard {...project} client:load />)}
+            </div>
+        </main>
+    </div>
+</Layout>

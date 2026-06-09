@@ -1,0 +1,74 @@
+[
+    {
+        "name": "qwq.sh",
+        "description": "The personal site you are looking at now ^-^",
+        "image": "/projects/website.png",
+        "demo": "https://qwq.sh",
+        "repo": "https://github.com/hazelcaffe/new-website",
+        "showStars": false
+    },
+    {
+        "name": "Veyl",
+        "description": "A complete and customizable JavaScript and TypeScript obfuscation utility",
+        "image": "/projects/veyl.png",
+        "demo": "https://hazelcaffe.github.io/Veyl/",
+        "repo": "https://github.com/hazelcaffe/veyl",
+        "showStars": true
+    },
+    {
+        "name": "RokuCLI",
+        "description": "A CLI written in Bash to remotely control a Roku device via its ECP server",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/rokucli",
+        "showStars": false
+    },
+    {
+        "name": "DLj",
+        "description": "A CLI to download & decrypt PS Vita & PSP games like PKGj",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/dlj",
+        "showStars": false
+    },
+    {
+        "name": "gh2fj",
+        "description": "A Node script to mirror GitHub users and/or organizations to a Forgejo server",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/gh2fj",
+        "showStars": false
+    },
+    {
+        "name": "DC-Bypass",
+        "description": "A Chrome extension to bypass Double Counter verification",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/dc-bypass",
+        "showStars": false
+    },
+    {
+        "name": "Mars",
+        "description": "A framework for making your own DaaS products like Kasm",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/mars",
+        "showStars": false
+    },
+    {
+        "name": "Fluxis",
+        "description": "A Discord selfbot for bridging two groupd DMs together, because the 10 member limit is stupid",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/fluxis",
+        "showStars": false
+    },
+    {
+        "name": "10z",
+        "description": "A recreation of the Tenzi dice game made for a programming competition",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/10z",
+        "showStars": false
+    }
+]

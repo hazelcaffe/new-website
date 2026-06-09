@@ -12,7 +12,10 @@ type Track = {
     playedAt: string | null;
 };
 
-function relativeTime(date: string | null) {
+/**
+ * Formats a recent scrobble time without adding a date-library dependency.
+ */
+function relativeTime(date: string | null): string {
     if (!date) return "recently";
     const seconds = Math.max(0, Math.floor((Date.now() - Date.parse(date)) / 1000));
     if (seconds < 60) return "less than a minute ago";
@@ -21,44 +24,56 @@ function relativeTime(date: string | null) {
     return `${Math.floor(seconds / 86400)}d ago`;
 }
 
+/**
+ * Shows the latest Last.fm track while tolerating transient upstream failures.
+ */
 export default function LastFmCard() {
     const [track, setTrack] = useState<Track | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [artFailed, setArtFailed] = useState(false);
 
-    useEffect(() => {
-        let active = true;
-        let timer: number;
+    useEffect(
+        /**
+         * Owns polling cleanup so navigation cannot leave an orphaned Last.fm timer.
+         */
+        function synchronizeRecentTrack() {
+            let active = true;
+            let timer: number;
 
-        async function poll() {
-            try {
-                const response = await fetch("/api/lastfm", { cache: "no-store" });
-                const data = await response.json();
-                if (!response.ok) throw new Error(data.error || "Last.fm unavailable");
-                if (active) {
-                    setTrack(data.track);
-                    setError(null);
-                    setArtFailed(false);
-                }
-            } catch (reason) {
-                if (active) {
-                    setError(reason instanceof Error ? reason.message : "Last.fm unavailable");
-                }
-            } finally {
-                if (active) {
-                    setLoading(false);
-                    timer = window.setTimeout(poll, 2000);
+            /**
+             * Polls slowly enough to stay current without repeatedly hitting the upstream service.
+             */
+            async function poll() {
+                try {
+                    const response = await fetch("/api/lastfm", { cache: "no-store" });
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.error || "Last.fm unavailable");
+                    if (active) {
+                        setTrack(data.track);
+                        setError(null);
+                        setArtFailed(false);
+                    }
+                } catch (reason) {
+                    if (active) {
+                        setError(reason instanceof Error ? reason.message : "Last.fm unavailable");
+                    }
+                } finally {
+                    if (active) {
+                        setLoading(false);
+                        timer = window.setTimeout(poll, 15_000);
+                    }
                 }
             }
-        }
 
-        void poll();
-        return () => {
-            active = false;
-            window.clearTimeout(timer);
-        };
-    }, []);
+            void poll();
+            return () => {
+                active = false;
+                window.clearTimeout(timer);
+            };
+        },
+        []
+    );
 
     const artUrl = track?.albumUrl || track?.trackUrl || "https://www.last.fm";
 
@@ -136,9 +151,6 @@ export default function LastFmCard() {
                         )}
                     </small>
                 </div>
-                <p className="activity-updated" aria-live="polite">
-                    {track ? (track.nowPlaying ? "live via last.fm" : "recently scrobbled") : ""}
-                </p>
             </div>
         </section>
     );

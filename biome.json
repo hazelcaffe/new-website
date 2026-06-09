@@ -1,7 +1,16 @@
 {
     "$schema": "https://biomejs.dev/schemas/2.4.16/schema.json",
     "files": {
-        "includes": ["**", "!!node_modules", "!!dist", "!!.astro", "!!88x31", "!!public/icons"]
+        "includes": [
+            "**",
+            "!!node_modules",
+            "!!dist",
+            "!!.astro",
+            "!!public/88x31",
+            "!!public/icons",
+            "!!public/pfps",
+            "!!public/oneko.js"
+        ]
     },
     "formatter": {
         "enabled": true,

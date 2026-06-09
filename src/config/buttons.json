@@ -1,4 +1,42 @@
-{
-    "bomberfish.gif": "https://bomberfish.ca",
-    "maddie.png": "https://madjikware.com"
-}
+[
+    {
+        "file": "bomberfish.gif",
+        "href": "https://bomberfish.ca"
+    },
+    {
+        "file": "maddie.png",
+        "href": "https://madjikware.com"
+    },
+    {
+        "file": "lesbian.png",
+        "href": null
+    },
+    {
+        "file": "trans.png",
+        "href": null
+    },
+    {
+        "file": "pve.png",
+        "href": null
+    },
+    {
+        "file": "madewith_macos.gif",
+        "href": null
+    },
+    {
+        "file": "UseKagiV4C.gif",
+        "href": null
+    },
+    {
+        "file": "firefox.gif",
+        "href": null
+    },
+    {
+        "file": "stop.gif",
+        "href": null
+    },
+    {
+        "file": "vocaloid.gif",
+        "href": null
+    }
+]

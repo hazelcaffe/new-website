@@ -6,6 +6,8 @@
         "build": "pnpm check && astro build",
         "preview": "astro preview",
         "start": "node --env-file-if-exists=.env dist/server/entry.mjs",
+        "bot": "tsx bot/index.ts",
+        "bot:deploy": "tsx bot/deploy.ts",
         "check": "astro check && biome check .",
         "lint": "biome lint .",
         "format": "biome format --write ."
@@ -16,6 +18,7 @@
         "@astrojs/sitemap": "^3.6.0",
         "@tailwindcss/vite": "^4.1.17",
         "astro": "^5.16.5",
+        "discord.js": "14.24.2",
         "dotenv": "^17.2.3",
         "mime-types": "^3.0.2",
         "react": "^19.2.0",
@@ -26,12 +29,13 @@
     "devDependencies": {
         "@astrojs/check": "^0.9.6",
         "@biomejs/biome": "^2.3.8",
+        "@types/hast": "^3.0.4",
         "@types/mime-types": "^3.0.1",
         "@types/node": "^24.10.1",
         "@types/react": "^19.2.7",
         "@types/react-dom": "^19.2.3",
-        "@types/hast": "^3.0.4",
         "sharp": "^0.34.5",
+        "tsx": "4.21.0",
         "typescript": "^5.9.3"
     }
 }

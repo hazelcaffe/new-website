@@ -1,19 +1,19 @@
 {
     "meta": {
-        "title": "Hazel's website",
+        "title": "Hazel's Website ^-^",
         "description": "Hazelcaffe's personal website ^-^",
         "themeColor": "#ffd9ea",
         "siteUrl": "https://qwq.sh",
         "locale": "en_US",
-        "author": "Hazel",
-        "image": "/pfp.png",
-        "imageAlt": "Hazelcaffe's profile picture",
+        "author": "Hazelcaffe",
+        "image": "/embed.png",
+        "imageAlt": "Hazelcaffe's website preview",
         "keywords": ["Hazelcaffe"]
     },
     "person": {
         "name": "Hazel",
         "alternateName": "hazelcaffe",
-        "email": "mailto:me@skylvi.net",
+        "email": "mailto:hazel@qwq.sh",
         "sameAs": [
             "https://github.com/hazelcaffe",
             "https://discord.com/users/1434354440537772087",
@@ -36,6 +36,6 @@
         "pronouns": "she / her"
     },
     "stats": {
-        "since": "03.14.2026"
+        "since": "06.09.2026"
     }
 }

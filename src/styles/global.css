@@ -46,6 +46,9 @@ body {
         16px 16px,
         28px 28px,
         28px 28px;
+    cursor:
+        url("/cursor.png") 3 2,
+        auto;
 }
 
 body::before {
@@ -59,6 +62,9 @@ body::before {
 
 a {
     color: inherit;
+    cursor:
+        url("/cursor.png") 3 2,
+        pointer;
 }
 
 button,
@@ -91,6 +97,52 @@ textarea {
     background:
         linear-gradient(90deg, rgba(255, 251, 253, 0.92), rgba(253, 225, 236, 0.9)),
         repeating-linear-gradient(0deg, transparent 0 5px, rgba(184, 95, 134, 0.06) 5px 6px);
+}
+
+.site-nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+    align-self: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.site-nav a,
+.project-links a {
+    padding: 7px 10px;
+    border: 1px solid var(--ink);
+    background: var(--pale-pink);
+    text-decoration: none;
+    box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.site-nav a:hover,
+.project-links a:hover {
+    color: var(--deep-pink);
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--shadow);
+}
+
+.commit-link {
+    margin-left: 6px;
+    color: #8c6678;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.service-banner {
+    margin-top: 14px;
+    padding: 10px 14px;
+    background: var(--pale-pink);
+    text-align: center;
+}
+
+.service-banner a {
+    color: var(--deep-pink);
+    font-weight: 500;
 }
 
 .site-header::before,
@@ -340,6 +392,26 @@ h1 span {
     margin: 0;
 }
 
+.last-update {
+    margin-top: 14px;
+    padding: 10px;
+    border: 1px dashed var(--hot-pink);
+    background: var(--pale-pink);
+}
+
+.last-update strong {
+    color: var(--deep-pink);
+    font-family: var(--pixel);
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.last-update p {
+    margin: 5px 0 0;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
 .trans-text .trans-pink {
     color: #f5a9b8;
 }
@@ -534,11 +606,41 @@ h1 span {
 }
 
 .button-grid {
+    gap: 6px;
+    min-height: 31px;
+}
+
+.button-collection {
+    width: 100%;
+}
+
+.owner-button-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 0 0 10px;
+    border: 0;
+    border-bottom: 1px dashed var(--mid-pink);
+    color: var(--deep-pink);
+    background: transparent;
+    font-family: var(--pixel);
+    font-size: 17px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.owner-button-row:hover span {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.button-grid-items {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 6px;
-    min-height: 31px;
+    padding-top: 10px;
 }
 
 .button-grid img,
@@ -555,6 +657,249 @@ h1 span {
 .button-grid-message {
     font-family: var(--pixel);
     font-size: 17px;
+}
+
+.projects-page {
+    margin-top: 18px;
+}
+
+.projects-heading {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 20px;
+    padding: 24px 28px;
+    overflow: hidden;
+    background:
+        linear-gradient(90deg, rgba(255, 251, 253, 0.96), rgba(249, 219, 231, 0.94)),
+        repeating-linear-gradient(0deg, transparent 0 5px, rgba(184, 95, 134, 0.06) 5px 6px);
+}
+
+.projects-heading::after {
+    content: "";
+    position: absolute;
+    right: 110px;
+    bottom: -65px;
+    width: 130px;
+    height: 130px;
+    border: 2px dashed var(--mid-pink);
+    border-radius: 50%;
+}
+
+.projects-heading-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+.projects-heading h2 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(30px, 5vw, 44px);
+    line-height: 1;
+}
+
+.projects-heading-copy > p:last-child {
+    max-width: 650px;
+    margin: 12px 0 0;
+    line-height: 1.65;
+}
+
+.projects-count {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    min-width: 94px;
+    padding: 12px;
+    border: 1px dashed var(--deep-pink);
+    background: rgba(255, 241, 246, 0.8);
+    text-align: center;
+}
+
+.projects-count strong {
+    color: var(--deep-pink);
+    font-family: var(--pixel);
+    font-size: 35px;
+    line-height: 0.9;
+}
+
+.projects-count span {
+    margin-top: 5px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    display: flex;
+    min-height: 270px;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--soft-pink);
+    transition:
+        transform 120ms ease,
+        box-shadow 120ms ease;
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 7px 0 var(--shadow);
+}
+
+.project-card-featured {
+    grid-column: span 1;
+}
+
+.project-card h2 {
+    margin: 2px 0 0;
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.project-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.project-copy {
+    flex: 1;
+}
+
+.project-copy > p:last-child {
+    margin: 10px 0 0;
+    color: #765165;
+    line-height: 1.65;
+}
+
+.project-label {
+    margin: 0;
+    color: var(--deep-pink);
+    font-family: var(--pixel);
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.project-image-wrap {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    border-bottom: 2px solid var(--ink);
+    background: var(--pale-pink);
+}
+
+.project-image-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 65%, rgba(97, 54, 74, 0.12));
+}
+
+.project-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 180ms ease;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.025);
+}
+
+.project-placeholder {
+    display: grid;
+    height: 76px;
+    place-items: center;
+    border-bottom: 1px dashed var(--mid-pink);
+    color: var(--hot-pink);
+    background: radial-gradient(var(--mid-pink) 1px, transparent 1px), var(--pale-pink);
+    background-size: 10px 10px;
+}
+
+.project-placeholder span {
+    padding: 4px 9px;
+    border: 1px solid var(--mid-pink);
+    background: var(--soft-pink);
+    font-family: var(--pixel);
+    font-size: 20px;
+}
+
+.project-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-top: 14px;
+    border-top: 1px dashed var(--mid-pink);
+}
+
+.project-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.project-links a > span {
+    color: var(--deep-pink);
+    font-family: var(--pixel);
+}
+
+.project-links small {
+    padding-left: 6px;
+    border-left: 1px solid var(--mid-pink);
+    color: #8c6678;
+    font-size: 9px;
+}
+
+body.konami {
+    background-image: linear-gradient(to bottom right, #5bcefa, #f5a9b8, #ffffff, #f5a9b8, #5bcefa);
+    background-size: 300% 300%;
+    background-attachment: fixed;
+    animation: konami-trans-shift 8s ease-in-out infinite;
+}
+
+body.konami::before {
+    display: none;
+}
+
+body.konami .site-header,
+body.konami .projects-heading,
+body.konami .service-banner,
+body.konami .window,
+body.konami .mini-panel,
+body.konami .welcome-window .window-body,
+body.konami .project-card-body,
+body.konami .site-nav a,
+body.konami .project-links a,
+body.konami .cool-links a,
+body.konami .owner-button-row {
+    background: rgba(255, 255, 255, 0.24);
+    backdrop-filter: blur(3px);
+}
+
+@keyframes konami-trans-shift {
+    0%,
+    100% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
 }
 
 .album-art {
@@ -756,6 +1101,10 @@ h1 span {
         grid-template-columns: 230px minmax(0, 1fr);
     }
 
+    .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .right-column {
         grid-column: 1 / -1;
         grid-template-columns: 280px minmax(0, 1fr);
@@ -775,6 +1124,40 @@ h1 span {
     .site-header {
         min-height: 130px;
         padding: 18px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .site-nav {
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+
+    .projects-heading {
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .projects-heading::after {
+        display: none;
+    }
+
+    .projects-count {
+        min-width: 78px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .project-card {
+        min-height: 0;
+    }
+
+    .project-image-wrap {
+        height: 165px;
     }
 
     .header-doodles {
@@ -824,6 +1207,14 @@ h1 span {
     }
 
     .sparkle {
+        animation: none;
+    }
+
+    body.konami,
+    body.konami::before,
+    body.konami *,
+    body.konami *::before,
+    body.konami *::after {
         animation: none;
     }
 }

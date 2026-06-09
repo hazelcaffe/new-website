@@ -1,20 +1,8 @@
 [
     {
-        "label": "guest book",
-        "detail": "visit here!",
-        "href": "https://hazelcaffe.atabook.org",
-        "icon": "/icons/book.svg"
-    },
-    {
-        "label": "file download",
-        "detail": "visit here!",
-        "href": "https://bin.skylvi.net",
-        "icon": "/icons/download.svg"
-    },
-    {
         "label": "email",
-        "detail": "me@skylvi.net",
-        "href": "mailto:me@skylvi.net",
+        "detail": "hazel@qwq.sh",
+        "href": "mailto:hazel@qwq.sh",
         "icon": "/icons/mail.svg"
     },
     {

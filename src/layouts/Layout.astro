@@ -7,6 +7,8 @@ interface Props {
 }
 
 const { title = site.meta.title } = Astro.props;
+Astro.response.headers.set("Cache-Control", "no-store, max-age=0");
+Astro.response.headers.set("CDN-Cache-Control", "no-store");
 const canonicalUrl = new URL(Astro.url.pathname, site.meta.siteUrl).toString();
 const socialImageUrl = new URL(site.meta.image, site.meta.siteUrl).toString();
 const jsonLd = {
@@ -54,7 +56,8 @@ const jsonLd = {
         <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="application-name" content={site.meta.title} />
         <link rel="canonical" href={canonicalUrl} />
-        <link rel="icon" href="/pfp.png" type="image/png" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
 
         <meta property="og:type" content="profile" />
         <meta property="og:url" content={canonicalUrl} />
@@ -85,8 +88,52 @@ const jsonLd = {
             href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DotGothic16&family=VT323&display=swap"
             rel="stylesheet"
         />
+        <script async src="https://scripts.simpleanalyticscdn.com/latest.js" is:inline></script>
     </head>
     <body>
         <slot />
+        <script
+            src="/oneko.js"
+            data-cat="/oneko.gif"
+            data-persist-position="false"
+            defer
+            is:inline
+        ></script>
+        <script is:inline>
+            /**
+             * Keeps the easter egg isolated from page components so it works on every route.
+             */
+            function initializeKonamiCode() {
+                const sequence = [
+                    "ArrowUp",
+                    "ArrowUp",
+                    "ArrowDown",
+                    "ArrowDown",
+                    "ArrowLeft",
+                    "ArrowRight",
+                    "ArrowLeft",
+                    "ArrowRight",
+                    "b",
+                    "a"
+                ];
+                let position = 0;
+
+                /**
+                 * Resets immediately on a mismatch so partial sequences cannot trigger accidentally.
+                 *
+                 * @param {KeyboardEvent} event
+                 */
+                function handleKeydown(event) {
+                    position = event.key === sequence[position] ? position + 1 : 0;
+                    if (position !== sequence.length) return;
+                    document.body.classList.toggle("konami");
+                    position = 0;
+                }
+
+                window.addEventListener("keydown", handleKeydown);
+            }
+
+            initializeKonamiCode();
+        </script>
     </body>
 </html>
