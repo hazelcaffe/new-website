@@ -1,0 +1,9 @@
+::selection {
+    color: white;
+    background: var(--deep-pink);
+}
+
+:focus-visible {
+    outline: 2px dashed var(--deep-pink);
+    outline-offset: 3px;
+}

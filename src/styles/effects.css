@@ -1,0 +1,68 @@
+body.konami {
+    background-image: linear-gradient(
+        120deg,
+        #ff8fa3,
+        #ffc27a,
+        #fff09a,
+        #91e6ae,
+        #8ed8ff,
+        #bca7ff,
+        #f3a6d7,
+        #ff8fa3
+    );
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    animation: konami-rainbow-shift 4s ease-in-out infinite;
+}
+
+body.konami::before {
+    display: none;
+}
+
+body.konami .site-header,
+body.konami .projects-heading,
+body.konami .service-banner,
+body.konami .window,
+body.konami .mini-panel,
+body.konami .welcome-window .window-body,
+body.konami .project-card-body,
+body.konami .site-nav a,
+body.konami .project-links a,
+body.konami .cool-links a,
+body.konami .webring a,
+body.konami .owner-button-row {
+    background: rgba(255, 255, 255, 0.24);
+    backdrop-filter: blur(3px);
+}
+
+body.konami .window,
+body.konami .mini-panel,
+body.konami .site-header,
+body.konami .service-banner,
+body.konami .projects-heading {
+    animation: konami-rainbow-glow 2s ease-in-out infinite;
+}
+
+@keyframes konami-rainbow-shift {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes konami-rainbow-glow {
+    0%,
+    100% {
+        box-shadow: 4px 4px 0 rgba(184, 95, 134, 0.65);
+    }
+
+    50% {
+        box-shadow:
+            4px 4px 0 rgba(91, 206, 250, 0.7),
+            0 0 12px rgba(255, 255, 255, 0.55);
+    }
+}

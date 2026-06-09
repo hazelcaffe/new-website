@@ -1,0 +1,274 @@
+.album-art {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 105px;
+    height: 105px;
+    margin: 0 auto 12px;
+    border: 2px solid var(--ink);
+    overflow: hidden;
+    background:
+        linear-gradient(35deg, transparent 35%, rgba(255, 255, 255, 0.8) 36% 40%, transparent 41%),
+        linear-gradient(135deg, #8f6ca7, #f39bc3 50%, #ffe5b8);
+    box-shadow: 3px 3px 0 var(--mid-pink);
+    text-decoration: none;
+}
+
+.album-art img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.album-art span {
+    z-index: 1;
+    color: white;
+    font-family: var(--display);
+    font-size: 16px;
+    text-align: center;
+    text-shadow: 2px 2px #8f456a;
+    transform: rotate(-8deg);
+}
+
+.cd {
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    width: 70px;
+    height: 70px;
+    border: 8px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+}
+
+.album-art:has(img:not([hidden])) .cd {
+    display: none;
+}
+
+.track {
+    text-align: center;
+}
+
+.track p,
+.track h3,
+.track span {
+    display: block;
+    margin: 3px 0;
+}
+
+.track p {
+    color: var(--deep-pink);
+    font-family: var(--pixel);
+    font-size: 16px;
+}
+
+.track h3 {
+    font-size: 12px;
+}
+
+.track a {
+    color: inherit;
+    text-decoration-color: var(--mid-pink);
+    text-underline-offset: 2px;
+}
+
+.track a:hover {
+    color: var(--deep-pink);
+    text-decoration-thickness: 2px;
+}
+
+.track small {
+    display: block;
+    min-height: 16px;
+    margin-top: 5px;
+    color: #8c6678;
+    line-height: 1.4;
+}
+
+.activity-updated {
+    min-height: 16px;
+    margin: 11px 0 0;
+    color: #9a7285;
+    font-family: var(--pixel);
+    font-size: 15px;
+    text-align: center;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 12px;
+}
+
+.player-controls button {
+    width: 28px;
+    height: 25px;
+    padding: 0;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    background: var(--soft-pink);
+    cursor: pointer;
+    box-shadow: 1px 1px 0 var(--shadow);
+}
+
+.player-controls button:active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+}
+
+.progress {
+    height: 8px;
+    flex: 1;
+    border: 1px solid var(--ink);
+    background: white;
+}
+
+.progress i {
+    display: block;
+    width: 38%;
+    height: 100%;
+    background: var(--hot-pink);
+}
+
+.cool-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    padding: 10px;
+}
+
+.cool-links a {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    align-items: center;
+    gap: 6px;
+    min-height: 49px;
+    min-width: 0;
+    padding: 7px;
+    border: 1px dashed var(--hot-pink);
+    color: var(--ink);
+    background: var(--pale-pink);
+    text-decoration: none;
+}
+
+.cool-links a:hover {
+    transform: translateX(2px);
+    background: var(--soft-pink);
+}
+
+.cool-links img {
+    width: 24px;
+    height: 24px;
+    justify-self: center;
+}
+
+.cool-links span,
+.cool-links b,
+.cool-links small {
+    display: block;
+    min-width: 0;
+}
+
+.cool-links b {
+    font-size: 11px;
+}
+
+.cool-links small {
+    margin-top: 2px;
+    color: #8c6678;
+    font-size: 9px;
+    overflow-wrap: anywhere;
+}
+
+.webring .window-body {
+    position: relative;
+    padding: 16px;
+    text-align: center;
+    background: var(--soft-pink);
+}
+
+.webring h2 {
+    margin: 0 0 5px;
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: 20px;
+}
+
+.webring p {
+    margin: 0 auto 13px;
+    color: #8c6678;
+    font-family: var(--pixel);
+    font-size: 15px;
+    line-height: 1.35;
+}
+
+.webring nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+}
+
+.webring nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 0;
+    padding: 8px 5px;
+    border: 1px dashed var(--hot-pink);
+    color: var(--ink);
+    background: var(--pale-pink);
+    font-family: var(--pixel);
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.webring nav a:hover {
+    color: var(--deep-pink);
+    background: var(--white);
+    transform: translateY(-2px);
+}
+
+.webring-sites {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px 12px;
+    margin: 13px 0 0;
+    padding: 12px 2px 0;
+    border-top: 1px dashed var(--mid-pink);
+    list-style: none;
+    text-align: left;
+}
+
+.webring-sites li {
+    min-width: 0;
+    font-family: var(--pixel);
+    font-size: 14px;
+}
+
+.webring-sites li::before {
+    content: "+";
+    margin-right: 5px;
+    color: var(--hot-pink);
+}
+
+.webring-sites a,
+.webring-sites span {
+    color: var(--ink);
+    overflow-wrap: anywhere;
+}
+
+.webring-sites a:hover {
+    color: var(--deep-pink);
+}
+
+.webring-sites .current::before {
+    content: "*";
+    color: var(--deep-pink);
+}
+
+.webring-sites .current span {
+    color: var(--deep-pink);
+}

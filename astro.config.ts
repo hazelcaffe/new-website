@@ -1,6 +1,5 @@
 import node from "@astrojs/node";
 import sitemap from "@astrojs/sitemap";
-import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { markdownLinks } from "./src/lib/markdown-links";
 
@@ -11,8 +10,5 @@ export default defineConfig({
     integrations: [sitemap()],
     markdown: {
         rehypePlugins: [markdownLinks]
-    },
-    vite: {
-        plugins: [tailwindcss()]
     }
 });

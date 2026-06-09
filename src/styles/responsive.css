@@ -1,0 +1,130 @@
+@media (max-width: 1100px) {
+    .desktop-grid {
+        grid-template-columns: 230px minmax(0, 1fr);
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .right-column {
+        grid-column: 1 / -1;
+        grid-template-columns: 280px minmax(0, 1fr);
+    }
+
+    #links {
+        grid-column: 2;
+    }
+
+    .webring {
+        grid-column: 2;
+    }
+}
+
+@media (max-width: 650px) {
+    .page-shell {
+        width: min(100% - 16px, 500px);
+        padding: 16px 0;
+    }
+
+    .site-header {
+        min-height: 130px;
+        padding: 18px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .site-nav {
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+
+    .projects-heading {
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .projects-heading::after {
+        display: none;
+    }
+
+    .projects-count {
+        min-width: 78px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .project-card {
+        min-height: 0;
+    }
+
+    .project-image-wrap {
+        height: 165px;
+    }
+
+    .header-doodles {
+        right: -55px;
+        opacity: 0.5;
+    }
+
+    .subtitle {
+        max-width: 80%;
+        font-size: 17px;
+    }
+
+    .desktop-grid {
+        display: flex;
+        flex-direction: column;
+        margin-top: 12px;
+        padding: 0;
+    }
+
+    .left-column,
+    .center-column,
+    .right-column {
+        width: 100%;
+    }
+
+    .profile-window {
+        order: -2;
+    }
+
+    .right-column {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    #links {
+        grid-column: auto;
+    }
+
+    .webring {
+        grid-column: auto;
+    }
+
+    .cool-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .sparkle {
+        animation: none;
+    }
+
+    body.konami,
+    body.konami::before,
+    body.konami *,
+    body.konami *::before,
+    body.konami *::after {
+        animation: none;
+    }
+}

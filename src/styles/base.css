@@ -1,0 +1,235 @@
+:root {
+    --ink: #61364a;
+    --deep-pink: #b85f86;
+    --hot-pink: #e5a0bd;
+    --mid-pink: #f1bfd3;
+    --soft-pink: #f9dbe7;
+    --pale-pink: #fff1f6;
+    --cream: #fff8fa;
+    --white: #fffbfd;
+    --green: #75b77b;
+    --shadow: #d9a9bd;
+    --mono: "DM Mono", monospace;
+    --pixel: "VT323", monospace;
+    --display: "DotGothic16", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 13px;
+    background-color: #fbe4ee;
+    background-image:
+        radial-gradient(#eab7cc 1px, transparent 1px),
+        radial-gradient(#fffafd 1px, transparent 1px),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%),
+        linear-gradient(315deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%);
+    background-position:
+        0 0,
+        8px 8px,
+        0 0,
+        0 0;
+    background-size:
+        16px 16px,
+        16px 16px,
+        28px 28px,
+        28px 28px;
+    cursor:
+        url("/cursor.png") 3 2,
+        auto;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 30%);
+}
+
+a {
+    color: inherit;
+    cursor:
+        url("/cursor.png") 3 2,
+        pointer;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+.page-shell {
+    display: flex;
+    flex-direction: column;
+    width: min(1440px, calc(100% - 48px));
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 24px 0 36px;
+}
+
+.pixel-border {
+    border: 2px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--shadow);
+}
+
+.site-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 156px;
+    padding: 26px 38px;
+    overflow: hidden;
+    background:
+        linear-gradient(90deg, rgba(255, 251, 253, 0.92), rgba(253, 225, 236, 0.9)),
+        repeating-linear-gradient(0deg, transparent 0 5px, rgba(184, 95, 134, 0.06) 5px 6px);
+}
+
+.site-nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+    align-self: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.site-nav a,
+.project-links a {
+    padding: 7px 10px;
+    border: 1px solid var(--ink);
+    background: var(--pale-pink);
+    text-decoration: none;
+    box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.site-nav a:hover,
+.project-links a:hover {
+    color: var(--deep-pink);
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--shadow);
+}
+
+.commit-link {
+    margin-left: 6px;
+    color: #8c6678;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.service-banner {
+    margin-top: 14px;
+    padding: 10px 14px;
+    background: var(--pale-pink);
+    text-align: center;
+}
+
+.service-banner a {
+    color: var(--deep-pink);
+    font-weight: 500;
+}
+
+.site-header::before,
+.site-header::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border: 2px dashed var(--mid-pink);
+    border-radius: 50%;
+}
+
+.site-header::before {
+    top: -105px;
+    left: 43%;
+}
+
+.site-header::after {
+    right: -45px;
+    bottom: -130px;
+}
+
+.header-copy {
+    position: relative;
+    z-index: 1;
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    color: var(--deep-pink);
+    font-family: var(--pixel);
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+
+h1 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(34px, 6vw, 62px);
+    line-height: 1;
+    letter-spacing: -3px;
+    text-shadow: 3px 3px 0 var(--soft-pink);
+}
+
+h1 span {
+    color: var(--deep-pink);
+}
+
+.subtitle {
+    margin: 12px 0 0;
+    font-family: var(--pixel);
+    font-size: 20px;
+}
+
+.header-doodles {
+    position: absolute;
+    right: 7%;
+    top: 15px;
+    width: 220px;
+    height: 120px;
+}
+
+.sparkle {
+    position: absolute;
+    color: var(--deep-pink);
+    font-size: 30px;
+    animation: twinkle 1.6s steps(2) infinite;
+}
+
+.s1 {
+    left: 8px;
+    top: 15px;
+}
+
+.s2 {
+    left: 55px;
+    bottom: 6px;
+    animation-delay: 0.4s;
+}
+
+.s3 {
+    right: 2px;
+    top: 5px;
+    animation-delay: 0.8s;
+}
+
+@keyframes twinkle {
+    50% {
+        opacity: 0.25;
+        transform: scale(0.7);
+    }
+}
