@@ -1,12 +1,13 @@
 [
     {
-        "file": "bomberfish.gif",
+        "src": "https://bomberfish.ca/button.gif",
         "href": "https://bomberfish.ca"
     },
     {
-        "file": "maddie.png",
+        "src": "https://madjikware.com/img/mj.png",
         "href": "https://madjikware.com"
     },
+
     {
         "file": "lesbian.png",
         "href": null
@@ -15,28 +16,86 @@
         "file": "trans.png",
         "href": null
     },
+
+    {
+        "file": "gay.gif",
+        "href": null
+    },
+    {
+        "file": "desktop.gif",
+        "href": null
+    },
+
+    {
+        "file": "vocaloid.gif",
+        "href": "https://www.vocaloid.com/"
+    },
+    {
+        "file": "miku.gif",
+        "href": "https://en.wikipedia.org/wiki/Hatsune_Miku"
+    },
+
+    {
+        "file": "diva.png",
+        "href": "https://store.steampowered.com/app/1761390/Hatsune_Miku_Project_DIVA_Mega_Mix/"
+    },
+    {
+        "file": "yuri.gif",
+        "href": "https://mangadex.org/title/52ab10b8-d539-4839-9b31-7937fb08c813/na-neun-amy-reul-saranghae"
+    },
+
     {
         "file": "pve.png",
-        "href": null
+        "href": "https://pve.proxmox.com/wiki/Main_Page"
     },
     {
-        "file": "madewith_macos.gif",
-        "href": null
+        "file": "caddy.png",
+        "href": "https://caddyserver.com/"
+    },
+
+    {
+        "file": "macos.gif",
+        "href": "https://www.apple.com/os/macos/?version=no-hero"
     },
     {
-        "file": "UseKagiV4C.gif",
+        "file": "vscode.png",
+        "href": "https://vscodium.com/"
+    },
+
+    {
+        "file": "windows.gif",
         "href": null
     },
     {
         "file": "firefox.gif",
-        "href": null
+        "href": "https://github.com/mozilla/bedrock/commit/d459addab846d8144b61939b7f4310eb80c5470e#diff-a24e74e4595fa85440a2f4e7e5dcfe68aba6e1e593aef05a2d35581a91423847"
+    },
+
+    {
+        "file": "kagi.gif",
+        "href": "https://kagi.com/"
     },
     {
-        "file": "stop.gif",
-        "href": null
+        "file": "ubo.png",
+        "href": "https://ublockorigin.com/"
+    },
+
+    {
+        "file": "undertale.png",
+        "href": "https://store.steampowered.com/app/391540/Undertale/"
     },
     {
-        "file": "vocaloid.gif",
+        "file": "no.gif",
         "href": null
+    },
+
+    {
+        "file": "artix.gif",
+        "href": "https://artixlinux.org/"
+    },
+    {
+        "src": "https://incr.easrng.net/badge?key=hazelcaffe",
+        "href": null,
+        "iframe": true
     }
 ]

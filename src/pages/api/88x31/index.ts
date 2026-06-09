@@ -3,6 +3,13 @@ import type { APIRoute } from "astro";
 import configuredButtons from "../../../config/buttons.json";
 import { buttonsDirectory } from "../../../lib/paths";
 
+type ConfiguredButton = {
+    file?: string;
+    src?: string;
+    href: string | null;
+    iframe?: boolean;
+};
+
 /**
  * Preserves configured button order while still exposing newly added unconfigured files.
  */
@@ -12,15 +19,28 @@ export const GET: APIRoute = async () => {
         const available = new Set(
             entries.filter((entry) => entry.isFile()).map((entry) => entry.name)
         );
-        const configured = configuredButtons
-            .filter((button) => available.delete(button.file))
-            .map((button) => ({
-                src: `/88x31/${encodeURIComponent(button.file)}`,
-                href: button.href
-            }));
-        const remaining = [...available]
-            .sort()
-            .map((file) => ({ src: `/88x31/${encodeURIComponent(file)}`, href: null }));
+        const configured = (configuredButtons as ConfiguredButton[]).flatMap((button) => {
+            if (button.src) {
+                return [{ src: button.src, href: button.href, iframe: button.iframe ?? false }];
+            }
+
+            if (button.file && available.delete(button.file)) {
+                return [
+                    {
+                        src: `/88x31/${encodeURIComponent(button.file)}`,
+                        href: button.href,
+                        iframe: button.iframe ?? false
+                    }
+                ];
+            }
+
+            return [];
+        });
+        const remaining = [...available].sort().map((file) => ({
+            src: `/88x31/${encodeURIComponent(file)}`,
+            href: null,
+            iframe: false
+        }));
         const buttons = [...configured, ...remaining];
 
         return Response.json(buttons, {

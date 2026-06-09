@@ -7,6 +7,7 @@ const ownerButtonEmbed =
 type Button = {
     src: string;
     href: string | null;
+    iframe: boolean;
 };
 
 /**
@@ -78,6 +79,19 @@ export default function ButtonGrid() {
             <div className="button-grid-items">
                 {otherButtons.map((button) => {
                     const fileName = decodeURIComponent(button.src.split("/").pop() || "button");
+                    if (button.iframe) {
+                        return (
+                            <iframe
+                                key={button.src}
+                                src={button.src}
+                                width={88}
+                                height={31}
+                                title="Hazel's visitor counter"
+                                loading="lazy"
+                            />
+                        );
+                    }
+
                     const image = (
                         <img
                             key={button.src}

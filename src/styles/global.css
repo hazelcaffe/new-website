@@ -644,7 +644,8 @@ h1 span {
 }
 
 .button-grid img,
-.button-grid a {
+.button-grid a,
+.button-grid iframe {
     display: block;
 }
 
@@ -652,6 +653,12 @@ h1 span {
     width: 88px;
     height: 31px;
     image-rendering: pixelated;
+}
+
+.button-grid iframe {
+    width: 88px;
+    height: 31px;
+    border: 0;
 }
 
 .button-grid-message {
