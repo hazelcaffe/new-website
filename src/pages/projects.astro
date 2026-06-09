@@ -1,6 +1,6 @@
 ---
 import Header from "../components/Header.astro";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/ProjectCard.astro";
 import projects from "../config/projects.json";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -25,7 +25,7 @@ import Layout from "../layouts/Layout.astro";
                 </div>
             </header>
             <div class="projects-grid">
-                {projects.map((project) => <ProjectCard {...project} client:load />)}
+                {projects.map((project) => <ProjectCard {...project} />)}
             </div>
         </main>
     </div>

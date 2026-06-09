@@ -4,8 +4,6 @@
     "exclude": ["dist"],
     "compilerOptions": {
         "allowJs": false,
-        "resolveJsonModule": true,
-        "jsx": "react-jsx",
-        "jsxImportSource": "react"
+        "resolveJsonModule": true
     }
 }

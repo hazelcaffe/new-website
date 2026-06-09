@@ -328,6 +328,7 @@ h1 span {
 }
 
 .base {
+    display: block;
     width: 44px;
     height: 8px;
     margin: 4px auto 0;
@@ -364,6 +365,11 @@ h1 span {
     font-family: var(--display);
     font-size: 23px;
     text-align: center;
+}
+
+.profile-window .lesbian-text {
+    font-size: 16px;
+    white-space: nowrap;
 }
 
 .small-copy {
@@ -893,6 +899,7 @@ body.konami .project-card-body,
 body.konami .site-nav a,
 body.konami .project-links a,
 body.konami .cool-links a,
+body.konami .webring a,
 body.konami .owner-button-row {
     background: rgba(255, 255, 255, 0.24);
     backdrop-filter: blur(3px);
@@ -1093,6 +1100,97 @@ body.konami .owner-button-row {
     overflow-wrap: anywhere;
 }
 
+.webring .window-body {
+    position: relative;
+    padding: 16px;
+    text-align: center;
+    background: var(--soft-pink);
+}
+
+.webring h2 {
+    margin: 0 0 5px;
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: 20px;
+}
+
+.webring p {
+    margin: 0 auto 13px;
+    color: #8c6678;
+    font-family: var(--pixel);
+    font-size: 15px;
+    line-height: 1.35;
+}
+
+.webring nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+}
+
+.webring nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 0;
+    padding: 8px 5px;
+    border: 1px dashed var(--hot-pink);
+    color: var(--ink);
+    background: var(--pale-pink);
+    font-family: var(--pixel);
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.webring nav a:hover {
+    color: var(--deep-pink);
+    background: var(--white);
+    transform: translateY(-2px);
+}
+
+.webring-sites {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px 12px;
+    margin: 13px 0 0;
+    padding: 12px 2px 0;
+    border-top: 1px dashed var(--mid-pink);
+    list-style: none;
+    text-align: left;
+}
+
+.webring-sites li {
+    min-width: 0;
+    font-family: var(--pixel);
+    font-size: 14px;
+}
+
+.webring-sites li::before {
+    content: "+";
+    margin-right: 5px;
+    color: var(--hot-pink);
+}
+
+.webring-sites a,
+.webring-sites span {
+    color: var(--ink);
+    overflow-wrap: anywhere;
+}
+
+.webring-sites a:hover {
+    color: var(--deep-pink);
+}
+
+.webring-sites .current::before {
+    content: "*";
+    color: var(--deep-pink);
+}
+
+.webring-sites .current span {
+    color: var(--deep-pink);
+}
+
 ::selection {
     color: white;
     background: var(--deep-pink);
@@ -1118,7 +1216,11 @@ body.konami .owner-button-row {
     }
 
     #links {
-        grid-column: auto;
+        grid-column: 2;
+    }
+
+    .webring {
+        grid-column: 2;
     }
 }
 
@@ -1200,6 +1302,10 @@ body.konami .owner-button-row {
     }
 
     #links {
+        grid-column: auto;
+    }
+
+    .webring {
         grid-column: auto;
     }
 

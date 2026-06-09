@@ -1,5 +1,4 @@
 import node from "@astrojs/node";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
@@ -9,7 +8,7 @@ export default defineConfig({
     site: "https://qwq.sh",
     output: "server",
     adapter: node({ mode: "standalone" }),
-    integrations: [react(), sitemap()],
+    integrations: [sitemap()],
     markdown: {
         rehypePlugins: [markdownLinks]
     },

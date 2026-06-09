@@ -1,0 +1,22 @@
+{
+    "name": "Peoples Webring",
+    "description": "Group chat",
+    "links": [
+        {
+            "href": "https://qwq.sh",
+            "order": 0
+        },
+        {
+            "href": "https://bomberfish.ca",
+            "order": -10
+        },
+        {
+            "href": "https://owo.sh",
+            "order": 10
+        },
+        {
+            "href": "https://madjikware.com",
+            "order": 20
+        }
+    ]
+}

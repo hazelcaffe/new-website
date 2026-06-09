@@ -1,11 +1,12 @@
 ---
 import About, { frontmatter } from "../content/about.md";
-import ButtonGrid from "../components/ButtonGrid";
+import ButtonGrid from "../components/ButtonGrid.astro";
 import Header from "../components/Header.astro";
-import LastFmCard from "../components/LastFmCard";
-import ProfileCard from "../components/ProfileCard";
+import LastFmCard from "../components/LastFmCard.astro";
+import ProfileCard from "../components/ProfileCard.astro";
 import SocialLinks from "../components/SocialLinks.astro";
-import VisitorCounter from "../components/VisitorCounter";
+import VisitorCounter from "../components/VisitorCounter.astro";
+import Webring from "../components/Webring.astro";
 import Layout from "../layouts/Layout.astro";
 
 const about = frontmatter as {
@@ -24,12 +25,12 @@ const about = frontmatter as {
 
         <main id="home" class="desktop-grid">
             <aside class="left-column">
-                <ProfileCard client:load />
-                <VisitorCounter client:load />
+                <ProfileCard />
+                <VisitorCounter />
                 <section class="window" id="collections">
                     <div class="window-body">
                         <div class="button-grid" aria-live="polite">
-                            <ButtonGrid client:load />
+                            <ButtonGrid />
                         </div>
                     </div>
                 </section>
@@ -54,8 +55,9 @@ const about = frontmatter as {
             </section>
 
             <aside class="right-column">
-                <LastFmCard client:load />
+                <LastFmCard />
                 <SocialLinks />
+                <Webring />
             </aside>
         </main>
     </div>

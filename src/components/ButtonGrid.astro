@@ -1,0 +1,78 @@
+---
+import { loadButtons } from "../lib/buttons";
+
+const ownerButtonPath = "/88x31/hazelcaffe.png";
+const ownerButtonEmbed =
+    '<a href="https://qwq.sh"><img src="https://qwq.sh/88x31/hazelcaffe.png" alt="Hazel\'s website"></a>';
+const buttons = (await loadButtons()).filter((button) => button.src !== ownerButtonPath);
+---
+
+<div class="button-collection" data-button-collection data-embed={ownerButtonEmbed}>
+    <button class="owner-button-row" type="button">
+        <img src={ownerButtonPath} width="88" height="31" alt="Hazel's website" />
+        <span>click to copy</span>
+    </button>
+
+    <div class="button-grid-items">
+        {
+            buttons.map((button) => {
+                const fileName = decodeURIComponent(button.src.split("/").pop() || "button");
+                const alt = fileName.replace(/\.[^.]+$/, "");
+
+                if (button.iframe) {
+                    return (
+                        <iframe
+                            src={button.src}
+                            width="88"
+                            height="31"
+                            title="Hazel's visitor counter"
+                            loading="lazy"
+                        />
+                    );
+                }
+
+                const image = (
+                    <img
+                        src={button.src}
+                        width="88"
+                        height="31"
+                        alt={alt}
+                        loading="lazy"
+                    />
+                );
+
+                return button.href ? (
+                    <a href={button.href} target="_blank" rel="noreferrer">
+                        {image}
+                    </a>
+                ) : (
+                    <span class="button-image">{image}</span>
+                );
+            })
+        }
+    </div>
+</div>
+
+<script>
+    for (const collection of document.querySelectorAll<HTMLElement>("[data-button-collection]")) {
+        const button = collection.querySelector<HTMLButtonElement>(".owner-button-row");
+        const label = button?.querySelector("span");
+        const embed = collection.dataset.embed;
+        let resetTimer: number | undefined;
+
+        button?.addEventListener("click", async () => {
+            if (!label || !embed) return;
+
+            try {
+                await navigator.clipboard.writeText(embed);
+                label.textContent = "copied!";
+                window.clearTimeout(resetTimer);
+                resetTimer = window.setTimeout(() => {
+                    label.textContent = "click to copy";
+                }, 2000);
+            } catch {
+                label.textContent = "copy failed";
+            }
+        });
+    }
+</script>

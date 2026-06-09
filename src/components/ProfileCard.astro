@@ -1,0 +1,199 @@
+---
+import site from "../config/site.json";
+
+const transColors = ["trans-pink", "trans-blue", "trans-white"];
+const lesbianColors = ["lesbian-orange", "lesbian-white", "lesbian-pink"];
+
+function escapeHtml(character: string): string {
+    return character.replace(
+        /[&<>"']/g,
+        (value) =>
+            (
+                ({
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+                }) as Record<string, string>
+            )[value]
+    );
+}
+
+function coloredText(text: string, colors: string[]): string {
+    let visibleIndex = 0;
+
+    return [...text]
+        .map((character) => {
+            if (character === " ") return " ";
+            const className = colors[visibleIndex % colors.length];
+            visibleIndex += 1;
+            return `<span class="${className}">${escapeHtml(character)}</span>`;
+        })
+        .join("");
+}
+---
+
+<section class="window profile-window" id="about" data-profile-card>
+    <div class="window-body">
+        <div class="avatar-wrap">
+            <button
+                class="avatar"
+                type="button"
+                aria-label="Show Hazel's Discord avatar"
+                title="Click to show Discord avatar"
+                data-avatar-button
+            >
+                <img data-avatar-image alt="" hidden />
+                <span data-avatar-fallback>
+                    <span class="computer">
+                        <span class="screen">
+                            <span>^_^</span>
+                        </span>
+                        <span class="base"></span>
+                    </span>
+                    <span class="avatar-star a1">+</span>
+                    <span class="avatar-star a2">*</span>
+                </span>
+            </button>
+        </div>
+
+        <h2 class="lesbian-text" aria-label={site.profile.greeting}>
+            <span aria-hidden="true" set:html={coloredText(site.profile.greeting, lesbianColors)} />
+        </h2>
+        <p class="small-copy">{site.profile.summary}</p>
+
+        <dl class="profile-facts">
+            <div>
+                <dt>pronouns</dt>
+                <dd class="trans-text">
+                    <span
+                        aria-hidden="true"
+                        set:html={coloredText(site.profile.pronouns, transColors)}
+                    />
+                    <span class="sr-only">{site.profile.pronouns}</span>
+                </dd>
+            </div>
+            <div>
+                <dt>status</dt>
+                <dd data-discord-status>checking discord...</dd>
+            </div>
+        </dl>
+
+        <aside class="last-update" data-last-update hidden>
+            <strong>last update</strong>
+            <p></p>
+        </aside>
+    </div>
+</section>
+
+<script>
+    type DiscordData = {
+        avatarUrl: string | null;
+        statusText: string | null;
+    };
+
+    type LastUpdate = {
+        text: string;
+        updatedAt: string;
+    };
+
+    for (const card of document.querySelectorAll<HTMLElement>("[data-profile-card]")) {
+        const avatarButton = card.querySelector<HTMLButtonElement>("[data-avatar-button]");
+        const avatarImage = card.querySelector<HTMLImageElement>("[data-avatar-image]");
+        const avatarFallback = card.querySelector<HTMLElement>("[data-avatar-fallback]");
+        const status = card.querySelector<HTMLElement>("[data-discord-status]");
+        const lastUpdate = card.querySelector<HTMLElement>("[data-last-update]");
+        const lastUpdateText = lastUpdate?.querySelector("p");
+
+        let localAvatarUrl: string | null = null;
+        let discordAvatarUrl: string | null = null;
+        let showDiscordAvatar = false;
+
+        function renderAvatar() {
+            if (!avatarButton || !avatarImage || !avatarFallback) return;
+
+            const avatarUrl = showDiscordAvatar ? discordAvatarUrl : localAvatarUrl;
+            avatarButton.ariaLabel = showDiscordAvatar
+                ? "Show Hazel's profile picture"
+                : "Show Hazel's Discord avatar";
+            avatarButton.title = showDiscordAvatar
+                ? "Click to show profile picture"
+                : "Click to show Discord avatar";
+
+            if (!avatarUrl) {
+                avatarImage.hidden = true;
+                avatarImage.removeAttribute("src");
+                avatarFallback.hidden = false;
+                return;
+            }
+
+            avatarImage.src = avatarUrl;
+            avatarImage.alt = showDiscordAvatar
+                ? "Hazel's Discord avatar"
+                : "Hazel's profile picture";
+            avatarImage.hidden = false;
+            avatarFallback.hidden = true;
+        }
+
+        avatarButton?.addEventListener("click", () => {
+            showDiscordAvatar = !showDiscordAvatar;
+            renderAvatar();
+        });
+
+        avatarImage?.addEventListener("error", () => {
+            if (showDiscordAvatar) discordAvatarUrl = null;
+            else localAvatarUrl = null;
+            renderAvatar();
+        });
+
+        async function loadLocalAvatar() {
+            try {
+                const response = await fetch("/api/pfp");
+                const paths = await response.json();
+                if (!response.ok || !Array.isArray(paths) || paths.length === 0) return;
+                localAvatarUrl = paths[Math.floor(Math.random() * paths.length)];
+                renderAvatar();
+            } catch {
+                // The built-in computer icon remains available when avatar discovery fails.
+            }
+        }
+
+        async function pollDiscord() {
+            try {
+                const response = await fetch("/api/discord", { cache: "no-store" });
+                const data: DiscordData & { error?: string } = await response.json();
+                if (!response.ok) throw new Error(data.error || "Discord unavailable");
+                discordAvatarUrl = data.avatarUrl;
+                if (status) status.textContent = data.statusText || "no custom status";
+                renderAvatar();
+            } catch (error) {
+                if (status) {
+                    status.textContent =
+                        error instanceof Error ? error.message : "Discord unavailable";
+                }
+            } finally {
+                window.setTimeout(pollDiscord, 15_000);
+            }
+        }
+
+        async function loadLastUpdate() {
+            try {
+                const response = await fetch("/api/last-update", { cache: "no-store" });
+                const data: LastUpdate & { error?: string } = await response.json();
+                if (!response.ok) throw new Error(data.error || "Last update unavailable");
+                if (!lastUpdate || !lastUpdateText) return;
+                lastUpdate.title = `Last updated ${new Date(data.updatedAt).toLocaleString()}`;
+                lastUpdateText.textContent = data.text;
+                lastUpdate.hidden = false;
+            } catch {
+                if (lastUpdate) lastUpdate.hidden = true;
+            }
+        }
+
+        void loadLocalAvatar();
+        void loadLastUpdate();
+        void pollDiscord();
+        window.setInterval(loadLastUpdate, 30_000);
+    }
+</script>

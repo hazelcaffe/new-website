@@ -1,0 +1,82 @@
+---
+interface Props {
+    demo: string | null;
+    description: string;
+    image: string | null;
+    name: string;
+    repo: string | null;
+    showStars: boolean;
+}
+
+const { demo, description, image, name, repo, showStars } = Astro.props;
+const repository = repo ? new URL(repo).pathname.replace(/^\/|\/$/g, "") : null;
+---
+
+<article
+    class:list={["window", "project-card", { "project-card-featured": image }]}
+    data-project-card
+    data-repository={showStars ? repository : undefined}
+>
+    {
+        image ? (
+            <div class="project-image-wrap">
+                <img
+                    class="project-image"
+                    src={image}
+                    alt={`Preview of ${name}`}
+                    loading="lazy"
+                />
+            </div>
+        ) : (
+            <div class="project-placeholder" aria-hidden="true">
+                <span>&lt;/&gt;</span>
+            </div>
+        )
+    }
+    <div class="window-body project-card-body">
+        <div class="project-copy">
+            <p class="project-label">project</p>
+            <h2>{name}</h2>
+            <p>{description}</p>
+        </div>
+        <div class="project-links">
+            {
+                demo && (
+                    <a href={demo} target="_blank" rel="noreferrer">
+                        <span aria-hidden="true">&nearr;</span> Demo
+                    </a>
+                )
+            }
+            {
+                repo && (
+                    <a href={repo} target="_blank" rel="noreferrer">
+                        <span aria-hidden="true">&lt;/&gt;</span> Repository
+                        {showStars && <small data-star-count hidden />}
+                    </a>
+                )
+            }
+        </div>
+    </div>
+</article>
+
+<script>
+    for (const card of document.querySelectorAll<HTMLElement>("[data-project-card]")) {
+        const repository = card.dataset.repository;
+        const starCount = card.querySelector<HTMLElement>("[data-star-count]");
+        if (!repository || !starCount) continue;
+
+        fetch(`/api/github-stars?repo=${encodeURIComponent(repository)}`)
+            .then(async (response) => {
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error);
+                return data;
+            })
+            .then((data) => {
+                starCount.textContent = `${data.stars} \u2605`;
+                starCount.hidden = false;
+            })
+            .catch(() => {
+                starCount.hidden = true;
+            });
+    }
+</script>

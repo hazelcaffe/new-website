@@ -1,0 +1,33 @@
+---
+import site from "../config/site.json";
+---
+
+<section class="mini-panel pixel-border" data-visitor-counter>
+    <p>You are visitor</p>
+    <div class="counter" role="status" aria-label="Loading unique visitor count">------</div>
+    <p>since {site.stats.since}</p>
+</section>
+
+<script>
+    for (const counter of document.querySelectorAll<HTMLElement>("[data-visitor-counter]")) {
+        const display = counter.querySelector<HTMLElement>(".counter");
+        if (!display) continue;
+
+        fetch("/api/visitor?record=1", { cache: "no-store" })
+            .then(async (response) => {
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error);
+                return data;
+            })
+            .then((data) => {
+                const count = String(data.count).padStart(6, "0");
+                display.textContent = count;
+                display.setAttribute("aria-label", `${count} unique visitors`);
+            })
+            .catch((error) => {
+                console.error("Could not record visitor:", error);
+                display.textContent = "ERROR";
+                display.setAttribute("aria-label", "Visitor count unavailable");
+            });
+    }
+</script>

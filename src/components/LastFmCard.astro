@@ -1,0 +1,159 @@
+<section class="window now-playing" data-lastfm-card>
+    <div class="window-body">
+        <a
+            class="album-art"
+            href="https://www.last.fm"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open track on Last.fm"
+            data-album-art
+        >
+            <img data-album-image alt="" hidden />
+            <div data-album-fallback>
+                <div class="cd"></div>
+                <span>
+                    last
+                    <br />
+                    fm
+                </span>
+            </div>
+        </a>
+
+        <div class="track">
+            <p data-track-status>checking recent tracks...</p>
+            <h3>
+                <a
+                    href="https://www.last.fm"
+                    target="_blank"
+                    rel="noreferrer"
+                    data-track-link
+                >
+                    quiet for now
+                </a>
+            </h3>
+            <a
+                href="https://www.last.fm"
+                target="_blank"
+                rel="noreferrer"
+                data-artist-link
+            ></a>
+            <small>
+                <a
+                    href="https://www.last.fm"
+                    target="_blank"
+                    rel="noreferrer"
+                    data-album-link
+                    hidden
+                ></a>
+            </small>
+        </div>
+    </div>
+</section>
+
+<script>
+    type Track = {
+        nowPlaying: boolean;
+        title: string | null;
+        artist: string | null;
+        album: string | null;
+        imageUrl: string | null;
+        trackUrl: string;
+        artistUrl: string;
+        albumUrl: string | null;
+        playedAt: string | null;
+    };
+
+    function relativeTime(date: string | null): string {
+        if (!date) return "recently";
+        const seconds = Math.max(0, Math.floor((Date.now() - Date.parse(date)) / 1000));
+        if (seconds < 60) return "less than a minute ago";
+        if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+        if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
+        return `${Math.floor(seconds / 86400)}d ago`;
+    }
+
+    for (const card of document.querySelectorAll<HTMLElement>("[data-lastfm-card]")) {
+        const artLink = card.querySelector<HTMLAnchorElement>("[data-album-art]");
+        const artImage = card.querySelector<HTMLImageElement>("[data-album-image]");
+        const artFallback = card.querySelector<HTMLElement>("[data-album-fallback]");
+        const status = card.querySelector<HTMLElement>("[data-track-status]");
+        const trackLink = card.querySelector<HTMLAnchorElement>("[data-track-link]");
+        const artistLink = card.querySelector<HTMLAnchorElement>("[data-artist-link]");
+        const albumLink = card.querySelector<HTMLAnchorElement>("[data-album-link]");
+
+        artImage?.addEventListener("error", () => {
+            artImage.hidden = true;
+            if (artFallback) artFallback.hidden = false;
+        });
+
+        function render(track: Track | null) {
+            const lastFmUrl = "https://www.last.fm";
+            const trackUrl = track?.trackUrl || lastFmUrl;
+            const artUrl = track?.albumUrl || trackUrl;
+
+            if (status) {
+                status.textContent = track?.nowPlaying
+                    ? "currently listening to..."
+                    : track
+                      ? `last played ${relativeTime(track.playedAt)}`
+                      : "no recent tracks";
+            }
+
+            if (trackLink) {
+                trackLink.href = trackUrl;
+                trackLink.textContent = track?.title || "quiet for now";
+            }
+
+            if (artistLink) {
+                artistLink.href = track?.artistUrl || lastFmUrl;
+                artistLink.textContent = track?.artist || "";
+            }
+
+            if (albumLink) {
+                albumLink.href = track?.albumUrl || trackUrl;
+                albumLink.textContent = track?.album ? `from ${track.album}` : "";
+                albumLink.hidden = !track?.album;
+            }
+
+            if (artLink) {
+                artLink.href = artUrl;
+                artLink.ariaLabel = track?.album
+                    ? `Open ${track.album} on Last.fm`
+                    : "Open track on Last.fm";
+            }
+
+            if (artImage && track?.imageUrl) {
+                artImage.src = track.imageUrl;
+                artImage.alt = track.album
+                    ? `Cover art for ${track.album}`
+                    : `Artwork for ${track.title}`;
+                artImage.hidden = false;
+                if (artFallback) artFallback.hidden = true;
+            } else {
+                if (artImage) artImage.hidden = true;
+                if (artFallback) artFallback.hidden = false;
+            }
+        }
+
+        async function poll() {
+            try {
+                const response = await fetch("/api/lastfm", { cache: "no-store" });
+                const data: { track: Track | null; error?: string } = await response.json();
+                if (!response.ok) throw new Error(data.error || "Last.fm unavailable");
+                render(data.track);
+            } catch {
+                if (status) status.textContent = "last.fm unavailable";
+                if (trackLink) {
+                    trackLink.href = "https://www.last.fm";
+                    trackLink.textContent = "could not load music";
+                }
+                if (artistLink) artistLink.textContent = "";
+                if (albumLink) albumLink.hidden = true;
+            } finally {
+                window.setTimeout(poll, 15_000);
+            }
+        }
+
+        void poll();
+    }
+</script>
