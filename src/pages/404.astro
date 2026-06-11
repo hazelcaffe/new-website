@@ -1,0 +1,92 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="404 | Not Found" description="The page you were looking for could not be found.">
+    <main class="not-found-page">
+        <div class="not-found-card">
+            <img data-random-pfp alt="A random Hazel profile picture" />
+            <div class="not-found-copy">
+                <h1><span>404</span> <span aria-hidden="true">|</span> not found</h1>
+                <p>what are you looking for :p</p>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<script>
+    const image = document.querySelector<HTMLImageElement>("[data-random-pfp]");
+
+    async function loadRandomPfp() {
+        if (!image) return;
+
+        try {
+            const response = await fetch("/api/pfp");
+            const paths: unknown = await response.json();
+            if (!response.ok || !Array.isArray(paths) || paths.length === 0) return;
+
+            const path = paths[Math.floor(Math.random() * paths.length)];
+            if (typeof path === "string") image.src = path;
+        } catch {
+            image.hidden = true;
+        }
+    }
+
+    void loadRandomPfp();
+</script>
+
+<style>
+    .not-found-page {
+        display: grid;
+        min-height: 100vh;
+        padding: 24px;
+        place-items: center;
+    }
+
+    .not-found-card {
+        display: flex;
+        align-items: center;
+        gap: clamp(20px, 4vw, 42px);
+        padding: clamp(24px, 5vw, 48px);
+        border: 2px solid var(--ink);
+        background: rgba(255, 248, 250, 0.9);
+        box-shadow: 6px 6px 0 var(--shadow);
+    }
+
+    .not-found-card img {
+        width: clamp(110px, 18vw, 180px);
+        aspect-ratio: 1;
+        border: 2px solid var(--ink);
+        object-fit: cover;
+        box-shadow: 4px 4px 0 var(--mid-pink);
+    }
+
+    .not-found-copy h1 {
+        display: flex;
+        gap: 0.35em;
+        font-size: clamp(28px, 6vw, 56px);
+        letter-spacing: -2px;
+        white-space: nowrap;
+    }
+
+    .not-found-copy h1 span:first-child {
+        color: var(--deep-pink);
+    }
+
+    .not-found-copy p {
+        margin: 14px 0 0;
+        font-family: var(--pixel);
+        font-size: clamp(18px, 3vw, 24px);
+    }
+
+    @media (max-width: 560px) {
+        .not-found-card {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .not-found-copy h1 {
+            white-space: normal;
+        }
+    }
+</style>

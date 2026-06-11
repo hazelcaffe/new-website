@@ -1,75 +1,21 @@
 ---
-title: "Example Blog Post"
-subtitle: "meow"
+title: "How to Get the New Siri Early"
+subtitle: "On MacOS anyway"
 date: 06-11-2026
-tags: ["foo", "bar"]
-image: "/cover/example.png"
+tags: ["macos"]
+image: "/cover/macos.png"
 ---
 
-Text
+As you may know, at WWDC this year Apple spent 1/3rd of the event talking about Apple Intelligence. While I'm not a big AI person, I admittedly think Apple's AI is pretty cool! 
+It's currently on a waitlist, so you have to wait to be approved, butttt if you have a device that can run the MacOS 27 dev beta, you can get it early!
 
-## H2
-
-**bold**, *italic*, ***both***, ~~strikethrough~~, `inline code`. [link](https://astro.build)
-
-> Blockquotes
->
-> woaow
-
-## Lists
-Bar:
-
-- a
-- b
-  - c
-  - d
-- e
-
-Foo:
-
-1. a
-2. b
-3. c
-
-Meow:
-
-- [x] a
-- [x] b
-- [x] c
-- [ ] d
-
-## Code
-```ts
-type Script = "type";
-const script: Script = "type";
-console.log(script);
+## How
+Open your terminal of choice and run:
+```sh
+$ sudo defaults write "/Library/Preferences/FeatureFlags/Domain/GenerativeModels.plist" "EnhancedSiriWaitlist" -dict-add Enabled -bool NO
 ```
+Then reboot! (`sudo reboot`)
 
-## Table
-| Feed | Path | Format |
-| --- | --- | --- |
-| RSS | `/rss.xml` | XML |
-| Atom | `/atom.xml` | XML |
-| JSON Feed | `/feed.json` | JSON |
-
-## Divider & Image
 ---
 
-![a](/88x31/lesbian.png)
-![a](/pfps/mizuki-06.png)
-
-|  |  |
-| --- | --- |
-| ![b](/pfps/mizuki-03.png) | ![a](/pfps/mizuki-05.png) |
-
-### H3
-
-a
-
-#### H4
-
-##### H5
-
-###### H6
-
-coolio
+Once rebooted you should notice the new Siri app in your dock, and if you open system settings and go to the "Siri" tab you'll notice you have access!! Walaaa. Thanks to my friend (which I'm *prettyyy* sure he found this on Twitter) for showing me this.
