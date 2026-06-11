@@ -1,0 +1,72 @@
+---
+import { getEntry, render } from "astro:content";
+import Header from "../../components/Header.astro";
+import { absoluteUrl, formatPostDate } from "../../lib/blog";
+import Layout from "../../layouts/Layout.astro";
+
+const { id } = Astro.params;
+const post = id ? await getEntry("posts", id) : undefined;
+
+if (!post) {
+    return new Response("Blog post not found.", { status: 404 });
+}
+
+const { Content } = await render(post);
+const postUrl = absoluteUrl(`/blog/${id}`);
+const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.data.title,
+    description: post.data.subtitle,
+    datePublished: post.data.date.toISOString(),
+    image: post.data.image ? absoluteUrl(post.data.image) : undefined,
+    url: postUrl
+};
+---
+
+<Layout
+    title={`${post.data.title} | Hazel's Blog`}
+    description={post.data.subtitle}
+    image={post.data.image}
+    type="article"
+>
+    <div class="page-shell">
+        <Header />
+        <main class="blog-post-page">
+            <a class="back-to-blog" href="/blog">&larr; Back to all posts</a>
+            <article class="window blog-post">
+                <header class="post-header">
+                    <p class="post-date">
+                        <time datetime={post.data.date.toISOString()}>
+                            {formatPostDate(post.data.date)}
+                        </time>
+                    </p>
+                    <h1>{post.data.title}</h1>
+                    <p class="post-lede">{post.data.subtitle}</p>
+                    {
+                        post.data.tags.length > 0 && (
+                            <ul class="tag-list" aria-label="Tags">
+                                {post.data.tags.map((tag) => <li>{tag}</li>)}
+                            </ul>
+                        )
+                    }
+                </header>
+                {
+                    post.data.image && (
+                        <figure class="post-cover">
+                            <img src={post.data.image} alt={`Cover for ${post.data.title}`} />
+                        </figure>
+                    )
+                }
+                <div class="post-content">
+                    <Content />
+                </div>
+            </article>
+        </main>
+    </div>
+    <script
+        type="application/ld+json"
+        is:inline
+        set:html={JSON.stringify(articleJsonLd)}
+    />
+</Layout>

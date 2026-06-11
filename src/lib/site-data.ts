@@ -35,11 +35,15 @@ const lockFile = `${siteDataFile}.lock`;
 const reservedVanities = new Set([
     "88x31",
     "api",
+    "atom.xml",
+    "blog",
+    "feed.json",
     "favicon.png",
     "oneko.gif",
     "oneko.js",
     "pfps",
     "projects",
+    "rss.xml",
     "robots.txt"
 ]);
 

@@ -1,0 +1,72 @@
+---
+import { getCollection } from "astro:content";
+import Header from "../../components/Header.astro";
+import { blogDescription, formatPostDate, postPath, sortPosts } from "../../lib/blog";
+import Layout from "../../layouts/Layout.astro";
+
+const posts = sortPosts(await getCollection("posts"));
+---
+
+<Layout title="Blog | Hazel" description={blogDescription} type="website">
+    <div class="page-shell">
+        <Header />
+        <main class="blog-page">
+            <header class="blog-heading window">
+                <div class="blog-heading-copy">
+                    <p class="eyebrow">thinking emoji</p>
+                    <h2>Blog</h2>
+                    <p>{blogDescription}</p>
+                </div>
+                <div class="feed-links" aria-label="Subscribe to the blog">
+                    <span>Subscribe</span>
+                    <a href="/rss.xml">RSS</a>
+                    <a href="/atom.xml">Atom</a>
+                    <a href="/feed.json">JSON</a>
+                </div>
+            </header>
+
+            {
+                posts.length > 0 ? (
+                    <div class="post-list">
+                        {posts.map((post) => (
+                            <article class="window post-card">
+                                {post.data.image && (
+                                    <a class="post-card-image" href={postPath(post)} tabindex="-1">
+                                        <img
+                                            src={post.data.image}
+                                            alt=""
+                                            loading="lazy"
+                                        />
+                                    </a>
+                                )}
+                                <div class="window-body post-card-body">
+                                    <p class="post-date">
+                                        <time datetime={post.data.date.toISOString()}>
+                                            {formatPostDate(post.data.date)}
+                                        </time>
+                                    </p>
+                                    <h2>
+                                        <a href={postPath(post)}>{post.data.title}</a>
+                                    </h2>
+                                    <p class="post-subtitle">{post.data.subtitle}</p>
+                                    {post.data.tags.length > 0 && (
+                                        <ul class="tag-list" aria-label="Tags">
+                                            {post.data.tags.map((tag) => <li>{tag}</li>)}
+                                        </ul>
+                                    )}
+                                    <a class="read-post" href={postPath(post)}>
+                                        Read post <span aria-hidden="true">&rarr;</span>
+                                    </a>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                ) : (
+                    <div class="window empty-blog">
+                        <p>No posts yet. Check back soon!</p>
+                    </div>
+                )
+            }
+        </main>
+    </div>
+</Layout>

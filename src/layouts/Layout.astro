@@ -3,14 +3,22 @@ import "../styles/global.css";
 import site from "../config/site.json";
 
 interface Props {
+    description?: string;
+    image?: string;
+    type?: "website" | "article" | "profile";
     title?: string;
 }
 
-const { title = site.meta.title } = Astro.props;
+const {
+    description = site.meta.description,
+    image = site.meta.image,
+    type = "profile",
+    title = site.meta.title
+} = Astro.props;
 Astro.response.headers.set("Cache-Control", "no-store, max-age=0");
 Astro.response.headers.set("CDN-Cache-Control", "no-store");
 const canonicalUrl = new URL(Astro.url.pathname, site.meta.siteUrl).toString();
-const socialImageUrl = new URL(site.meta.image, site.meta.siteUrl).toString();
+const socialImageUrl = new URL(image, site.meta.siteUrl).toString();
 const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -50,7 +58,7 @@ const jsonLd = {
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <meta name="theme-color" content={site.meta.themeColor} />
-        <meta name="description" content={site.meta.description} />
+        <meta name="description" content={description} />
         <meta name="author" content={site.meta.author} />
         <meta name="keywords" content={site.meta.keywords.join(", ")} />
         <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -58,11 +66,29 @@ const jsonLd = {
         <link rel="canonical" href={canonicalUrl} />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title={`${site.meta.title} RSS Feed`}
+            href="/rss.xml"
+        />
+        <link
+            rel="alternate"
+            type="application/atom+xml"
+            title={`${site.meta.title} Atom Feed`}
+            href="/atom.xml"
+        />
+        <link
+            rel="alternate"
+            type="application/feed+json"
+            title={`${site.meta.title} JSON Feed`}
+            href="/feed.json"
+        />
 
-        <meta property="og:type" content="profile" />
+        <meta property="og:type" content={type} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:title" content={title} />
-        <meta property="og:description" content={site.meta.description} />
+        <meta property="og:description" content={description} />
         <meta property="og:site_name" content={site.meta.title} />
         <meta property="og:locale" content={site.meta.locale} />
         <meta property="og:image" content={socialImageUrl} />
@@ -75,7 +101,7 @@ const jsonLd = {
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={site.meta.description} />
+        <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={socialImageUrl} />
         <meta name="twitter:image:alt" content={site.meta.imageAlt} />
         <meta name="twitter:creator" content="@hazelcaffed" />

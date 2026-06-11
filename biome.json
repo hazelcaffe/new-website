@@ -4,6 +4,7 @@
         "includes": [
             "**",
             "!!node_modules",
+            "!!.pnpm-store",
             "!!dist",
             "!!.astro",
             "!!public/88x31",

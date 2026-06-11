@@ -18,6 +18,15 @@
     },
 
     {
+        "file": "rss.png",
+        "href": "https://qwq.sh/feed.xml"
+    },
+    {
+        "file": "atom.png",
+        "href": "https://qwq.sh/atom.xml"
+    },
+
+    {
         "file": "gay.gif",
         "href": null
     },
@@ -27,21 +36,12 @@
     },
 
     {
-        "file": "vocaloid.gif",
-        "href": "https://www.vocaloid.com/"
+        "file": "astro.png",
+        "href": "https://astro.build"
     },
     {
-        "file": "miku.gif",
-        "href": "https://en.wikipedia.org/wiki/Hatsune_Miku"
-    },
-
-    {
-        "file": "diva.png",
-        "href": "https://store.steampowered.com/app/1761390/Hatsune_Miku_Project_DIVA_Mega_Mix/"
-    },
-    {
-        "file": "yuri.gif",
-        "href": "https://mangadex.org/title/52ab10b8-d539-4839-9b31-7937fb08c813/na-neun-amy-reul-saranghae"
+        "file": "css.png",
+        "href": null
     },
 
     {
@@ -60,6 +60,24 @@
     {
         "file": "vscode.png",
         "href": "https://vscodium.com/"
+    },
+
+    {
+        "file": "vocaloid.gif",
+        "href": "https://www.vocaloid.com/"
+    },
+    {
+        "file": "miku.gif",
+        "href": "https://en.wikipedia.org/wiki/Hatsune_Miku"
+    },
+
+    {
+        "file": "diva.png",
+        "href": "https://store.steampowered.com/app/1761390/Hatsune_Miku_Project_DIVA_Mega_Mix/"
+    },
+    {
+        "file": "yuri.gif",
+        "href": "https://mangadex.org/title/52ab10b8-d539-4839-9b31-7937fb08c813/na-neun-amy-reul-saranghae"
     },
 
     {
