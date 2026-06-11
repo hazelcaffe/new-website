@@ -10,7 +10,8 @@
             "!!public/88x31",
             "!!public/icons",
             "!!public/pfps",
-            "!!public/oneko.js"
+            "!!public/oneko.js",
+            "!!visitors.json"
         ]
     },
     "formatter": {

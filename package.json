@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "astro dev",
         "build": "pnpm check && astro build",
-        "preview": "astro preview",
+        "preview": "astro preview --host",
         "start": "node --env-file-if-exists=.env dist/server/entry.mjs",
         "bot": "tsx bot/index.ts",
         "bot:deploy": "tsx bot/deploy.ts",
