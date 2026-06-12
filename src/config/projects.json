@@ -32,8 +32,16 @@
         "showStars": false
     },
     {
+        "name": "paip-openai-api",
+        "description": "OpenAI-compatible API backed by the Palantir AIP LLM Proxy",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/paip-openai-api",
+        "showStars": false
+    },
+    {
         "name": "paip-sdk",
-        "description": "An unofficial TS SDK for querying language models through the Palantir Foundry AIP LLM Proxy",
+        "description": "A TypeScript SDK for querying language models through the Palantir Foundry AIP LLM Proxy",
         "image": null,
         "demo": null,
         "repo": "https://github.com/hazelcaffe/paip-sdk",
@@ -41,7 +49,7 @@
     },
     {
         "name": "paip-agent-sdk",
-        "description": "An unofficial TS agent SDK for Palantir Foundry AIP LLM Proxy models",
+        "description": "A TypeScript agent SDK for Palantir Foundry AIP LLM Proxy models",
         "image": null,
         "demo": null,
         "repo": "https://github.com/hazelcaffe/paip-agent-sdk",
