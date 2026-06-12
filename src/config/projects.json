@@ -32,6 +32,30 @@
         "showStars": false
     },
     {
+        "name": "paip-sdk",
+        "description": "An unofficial TS SDK for querying language models through the Palantir Foundry AIP LLM Proxy",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/paip-sdk",
+        "showStars": false
+    },
+    {
+        "name": "paip-agent-sdk",
+        "description": "An unofficial TS agent SDK for Palantir Foundry AIP LLM Proxy models",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/paip-agent-sdk",
+        "showStars": false
+    },
+    {
+        "name": "Pickle",
+        "description": "A remote, platform-independent, dog clicker",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/pickle",
+        "showStars": false
+    },
+    {
         "name": "gh2fj",
         "description": "A Node script to mirror GitHub users and/or organizations to a Forgejo server",
         "image": null,
