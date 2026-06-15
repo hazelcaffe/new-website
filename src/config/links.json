@@ -6,16 +6,22 @@
         "icon": "/icons/mail.svg"
     },
     {
+        "label": "discord",
+        "detail": "@hazelcaffe",
+        "href": "https://discord.com/users/1434354440537772087",
+        "icon": "/icons/discord.svg"
+    },
+    {
         "label": "github",
         "detail": "@hazelcaffe",
         "href": "https://github.com/hazelcaffe",
         "icon": "/icons/github.svg"
     },
     {
-        "label": "discord",
-        "detail": "@hazelcaffe",
-        "href": "https://discord.com/users/1434354440537772087",
-        "icon": "/icons/discord.svg"
+        "label": "twitter",
+        "detail": "@hazelcaffed",
+        "href": "https://x.com/@hazelcaffed",
+        "icon": "/icons/x.svg"
     },
     {
         "label": "tiktok",
@@ -30,16 +36,10 @@
         "icon": "/icons/instagram.svg"
     },
     {
-        "label": "twitter",
-        "detail": "@hazelcaffed",
-        "href": "https://x.com/@hazelcaffed",
-        "icon": "/icons/x.svg"
-    },
-    {
-        "label": "youtube",
-        "detail": "@hazelcaffe",
-        "href": "https://www.youtube.com/@hazelcaffe",
-        "icon": "/icons/youtube.svg"
+        "label": "last.fm",
+        "detail": "@skylvi",
+        "href": "https://www.last.fm/user/skylvi",
+        "icon": "/icons/lastfm.svg"
     },
     {
         "label": "steam",
@@ -48,9 +48,9 @@
         "icon": "/icons/steam.svg"
     },
     {
-        "label": "last.fm",
-        "detail": "@skylvi",
-        "href": "https://www.last.fm/user/skylvi",
-        "icon": "/icons/lastfm.svg"
+        "label": "youtube",
+        "detail": "@hazelcaffe",
+        "href": "https://www.youtube.com/@hazelcaffe",
+        "icon": "/icons/youtube.svg"
     }
 ]
