@@ -106,57 +106,16 @@ function coloredText(text: string, colors: string[]): string {
         const lastUpdate = card.querySelector<HTMLElement>("[data-last-update]");
         const lastUpdateText = lastUpdate?.querySelector("p");
 
-        let localAvatarUrl: string | null = null;
-        let discordAvatarUrl: string | null = null;
-        let showDiscordAvatar = false;
-
         function renderAvatar() {
             if (!avatarButton || !avatarImage || !avatarFallback) return;
 
-            const avatarUrl = showDiscordAvatar ? discordAvatarUrl : localAvatarUrl;
-            avatarButton.ariaLabel = showDiscordAvatar
-                ? "Show Hazel's profile picture"
-                : "Show Hazel's Discord avatar";
-            avatarButton.title = showDiscordAvatar
-                ? "Click to show profile picture"
-                : "Click to show Discord avatar";
+            avatarButton.ariaLabel = "Show Hazel's profile picture";
+            avatarButton.title = "Click to show profile picture";
 
-            if (!avatarUrl) {
-                avatarImage.hidden = true;
-                avatarImage.removeAttribute("src");
-                avatarFallback.hidden = false;
-                return;
-            }
-
-            avatarImage.src = avatarUrl;
-            avatarImage.alt = showDiscordAvatar
-                ? "Hazel's Discord avatar"
-                : "Hazel's profile picture";
+            avatarImage.src = "/pfp.png";
+            avatarImage.alt = "Hazel's profile picture";
             avatarImage.hidden = false;
             avatarFallback.hidden = true;
-        }
-
-        avatarButton?.addEventListener("click", () => {
-            showDiscordAvatar = !showDiscordAvatar;
-            renderAvatar();
-        });
-
-        avatarImage?.addEventListener("error", () => {
-            if (showDiscordAvatar) discordAvatarUrl = null;
-            else localAvatarUrl = null;
-            renderAvatar();
-        });
-
-        async function loadLocalAvatar() {
-            try {
-                const response = await fetch("/api/pfp");
-                const paths = await response.json();
-                if (!response.ok || !Array.isArray(paths) || paths.length === 0) return;
-                localAvatarUrl = paths[Math.floor(Math.random() * paths.length)];
-                renderAvatar();
-            } catch {
-                // The built-in computer icon remains available when avatar discovery fails.
-            }
         }
 
         async function pollDiscord() {
@@ -164,7 +123,6 @@ function coloredText(text: string, colors: string[]): string {
                 const response = await fetch("/api/discord", { cache: "no-store" });
                 const data: DiscordData & { error?: string } = await response.json();
                 if (!response.ok) throw new Error(data.error || "Discord unavailable");
-                discordAvatarUrl = data.avatarUrl;
                 if (status) status.textContent = data.statusText || "no custom status";
                 renderAvatar();
             } catch (error) {
@@ -191,7 +149,6 @@ function coloredText(text: string, colors: string[]): string {
             }
         }
 
-        void loadLocalAvatar();
         void loadLastUpdate();
         void pollDiscord();
         window.setInterval(loadLastUpdate, 30_000);

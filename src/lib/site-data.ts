@@ -41,7 +41,7 @@ const reservedVanities = new Set([
     "favicon.png",
     "oneko.gif",
     "oneko.js",
-    "pfps",
+    "pfp.png",
     "projects",
     "rss.xml",
     "robots.txt"
