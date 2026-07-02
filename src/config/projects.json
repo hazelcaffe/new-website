@@ -32,6 +32,14 @@
         "showStars": false
     },
     {
+        "name": "piper",
+        "description": "Fork of Opencode to support Palantir AIP (via LLM Proxy) natively",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/piper",
+        "showStars": false
+    },
+    {
         "name": "paip-openai-api",
         "description": "OpenAI-compatible API backed by the Palantir AIP LLM Proxy",
         "image": null,
