@@ -40,19 +40,11 @@
         "showStars": false
     },
     {
-        "name": "paip-sdk",
-        "description": "A TypeScript SDK for querying language models through the Palantir Foundry AIP LLM Proxy",
+        "name": "paip-model-test",
+        "description": "A model testsuite for seeing which models are available for use over the Palantir AIP LLM Proxy",
         "image": null,
         "demo": null,
-        "repo": "https://github.com/hazelcaffe/paip-sdk",
-        "showStars": false
-    },
-    {
-        "name": "paip-agent-sdk",
-        "description": "A TypeScript agent SDK for Palantir Foundry AIP LLM Proxy models",
-        "image": null,
-        "demo": null,
-        "repo": "https://github.com/hazelcaffe/paip-agent-sdk",
+        "repo": "https://github.com/hazelcaffe/paip-model-test",
         "showStars": false
     },
     {
