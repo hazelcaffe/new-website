@@ -9,7 +9,7 @@ I wish I could draw :(
 - IT & System Administration
 - Cybersecurity
 - JS & Malware Reverse Engineering
-- Linux
+- Linux (NixOS <3)
 
 ## Programming Languages
 I don't know many...
@@ -29,6 +29,7 @@ I'm also a [speedrun verifier for Hello Neighbor](https://speedrun.com/hn1)
 
 ## Music
 I ***love*** music.
+- I LOVE LEXYCAT
 - Vocaloid/Synthetic music
     - My favorite artists/bands are DECO*27, SAWTOWNE, FLAVOR FOLEY, Jamie Paige, etc etc. 
 - I also like some other artists like Yeat, Laufey, and Jane Remover
@@ -42,7 +43,7 @@ I have a few :3
     - Storage: 512GB
     - RAM: 16GB
 - Used Alienware PC
-    - Storage: 2TB NVMe + 2TB SSD (Running Windows 10 IoT LTSC + CachyOS)
+    - Storage: 2TB NVMe + 2TB SSD (Running NixOS + Windows 11)
     - RAM: 32GB DDR4
     - CPU: Ryzen 7 5800X
     - GPU: RTX 3070 LHR
@@ -57,5 +58,3 @@ I have a few :3
     - CPU: Intel Xeon E5-2687W v4 (3GHz, 12c/24t)
     - RAM: 32GB DDR4 ECC RDIMM
     - GPU: Nvidia Quadro K620
-
-I also own 2 Chromebooks, a gaming laptop, and another really old laptop, but I don't really use them. I used to use most, if not all, as other server nodes, but it got **WAY** too hot in my room for that :(

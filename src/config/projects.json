@@ -8,6 +8,14 @@
         "showStars": false
     },
     {
+        "name": "nixos-config",
+        "description": "My NixOS configuration",
+        "image": "/projects/nixos.png",
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/nixos-config",
+        "showStars": false
+    },
+    {
         "name": "Veyl",
         "description": "A complete and customizable JavaScript and TypeScript obfuscation utility",
         "image": "/projects/veyl.png",
@@ -40,11 +48,11 @@
         "showStars": false
     },
     {
-        "name": "paip-openai-api",
+        "name": "juniper",
         "description": "OpenAI-compatible API backed by the Palantir AIP LLM Proxy",
         "image": null,
         "demo": null,
-        "repo": "https://github.com/hazelcaffe/paip-openai-api",
+        "repo": "https://github.com/hazelcaffe/juniper",
         "showStars": false
     },
     {
@@ -53,14 +61,6 @@
         "image": null,
         "demo": null,
         "repo": "https://github.com/hazelcaffe/paip-model-test",
-        "showStars": false
-    },
-    {
-        "name": "Pickle",
-        "description": "A remote, platform-independent, dog clicker",
-        "image": null,
-        "demo": null,
-        "repo": "https://github.com/hazelcaffe/pickle",
         "showStars": false
     },
     {
