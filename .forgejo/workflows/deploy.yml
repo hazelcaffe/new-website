@@ -1,0 +1,20 @@
+name: Deploy
+
+on:
+  push:
+
+jobs:
+  deploy:
+    runs-on: docker
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/new-website
+            git pull
+            pnpm build
+            systemctl restart website

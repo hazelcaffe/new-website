@@ -72,6 +72,14 @@
         "showStars": false
     },
     {
+        "name": "sync-forgejo",
+        "description": "Sync external users and Git repo's to a Forgejo instanceResources",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/sync-forgejo",
+        "showStars": false
+    },
+    {
         "name": "DC-Bypass",
         "description": "A Chrome extension to bypass Double Counter verification",
         "image": null,
