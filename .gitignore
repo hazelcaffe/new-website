@@ -5,6 +5,4 @@ visitors.json
 dist/
 .astro/
 .DS_Store
-data/*.lock
-data/*.tmp
 data/
