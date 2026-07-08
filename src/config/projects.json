@@ -40,6 +40,14 @@
         "showStars": false
     },
     {
+        "name": "9flare",
+        "description": "A small (IPv4-only) DDNS client for CloudFlare",
+        "image": null,
+        "demo": null,
+        "repo": "https://github.com/hazelcaffe/9flare",
+        "showStars": false
+    },
+    {
         "name": "piper",
         "description": "Fork of Opencode to support Palantir AIP (via LLM Proxy) natively",
         "image": null,
