@@ -6,7 +6,6 @@ import LastFmCard from "../components/LastFmCard.astro";
 import ProfileCard from "../components/ProfileCard.astro";
 import SocialLinks from "../components/SocialLinks.astro";
 import VisitorCounter from "../components/VisitorCounter.astro";
-import Webring from "../components/Webring.astro";
 import Layout from "../layouts/Layout.astro";
 
 const about = frontmatter as {
@@ -27,13 +26,7 @@ const about = frontmatter as {
             <aside class="left-column">
                 <ProfileCard />
                 <VisitorCounter />
-                <section class="window" id="collections">
-                    <div class="window-body">
-                        <div class="button-grid" aria-live="polite">
-                            <ButtonGrid />
-                        </div>
-                    </div>
-                </section>
+                <SocialLinks />
             </aside>
 
             <section class="center-column">
@@ -56,8 +49,13 @@ const about = frontmatter as {
 
             <aside class="right-column">
                 <LastFmCard />
-                <SocialLinks />
-                <Webring />
+                <section class="window" id="collections">
+                    <div class="window-body">
+                        <div class="button-grid" aria-live="polite">
+                            <ButtonGrid />
+                        </div>
+                    </div>
+                </section>
             </aside>
         </main>
     </div>

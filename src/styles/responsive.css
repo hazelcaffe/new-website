@@ -11,14 +11,6 @@
         grid-column: 1 / -1;
         grid-template-columns: 280px minmax(0, 1fr);
     }
-
-    #links {
-        grid-column: 2;
-    }
-
-    .webring {
-        grid-column: 2;
-    }
 }
 
 @media (max-width: 650px) {
@@ -105,14 +97,6 @@
 
     #links {
         grid-column: auto;
-    }
-
-    .webring {
-        grid-column: auto;
-    }
-
-    .cool-links {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 

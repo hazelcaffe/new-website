@@ -374,8 +374,12 @@
 }
 
 .button-grid {
-    gap: 6px;
+    gap: 5px;
     min-height: 31px;
+}
+
+#collections .window-body {
+    padding: 14px;
 }
 
 .button-collection {
@@ -407,7 +411,7 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 5px;
     padding-top: 10px;
 }
 

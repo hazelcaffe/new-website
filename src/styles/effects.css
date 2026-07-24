@@ -29,7 +29,6 @@ body.konami .project-card-body,
 body.konami .site-nav a,
 body.konami .project-links a,
 body.konami .cool-links a,
-body.konami .webring a,
 body.konami .owner-button-row {
     background: rgba(255, 255, 255, 0.24);
     backdrop-filter: blur(3px);

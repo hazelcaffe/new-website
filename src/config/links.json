@@ -22,35 +22,5 @@
         "detail": "@hazelcaffed",
         "href": "https://x.com/@hazelcaffed",
         "icon": "/icons/x.svg"
-    },
-    {
-        "label": "tiktok",
-        "detail": "@hazelcaffe",
-        "href": "https://tiktok.com/@hazelcaffe",
-        "icon": "/icons/tiktok.svg"
-    },
-    {
-        "label": "instagram",
-        "detail": "@hazelcaffe",
-        "href": "https://www.instagram.com/hazelcaffe/",
-        "icon": "/icons/instagram.svg"
-    },
-    {
-        "label": "last.fm",
-        "detail": "@skylvi",
-        "href": "https://www.last.fm/user/skylvi",
-        "icon": "/icons/lastfm.svg"
-    },
-    {
-        "label": "steam",
-        "detail": "@hazelcaffe",
-        "href": "https://steamcommunity.com/id/hazelcaffe",
-        "icon": "/icons/steam.svg"
-    },
-    {
-        "label": "youtube",
-        "detail": "@hazelcaffe",
-        "href": "https://www.youtube.com/@hazelcaffe",
-        "icon": "/icons/youtube.svg"
     }
 ]

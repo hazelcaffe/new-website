@@ -54,7 +54,7 @@ I have a few :3
     - RAM: 8GB
 - My homelab is some used Dell workstation
     - 256GB SSD + 512GB NVMe for Proxmox (768GB total)
-    - Storage: Two 2TB HDDs, and two 1TB HDDs (4TB total)
+    - Storage: Two 2TB HDDs, and two 1TB HDDs (6TB total)
     - CPU: Intel Xeon E5-2687W v4 (3GHz, 12c/24t)
     - RAM: 48GB DDR4 ECC RDIMM
     - GPU: Nvidia Quadro K620

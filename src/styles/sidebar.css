@@ -134,7 +134,7 @@
 
 .cool-links {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 7px;
     padding: 10px;
 }
@@ -180,95 +180,4 @@
     color: #8c6678;
     font-size: 9px;
     overflow-wrap: anywhere;
-}
-
-.webring .window-body {
-    position: relative;
-    padding: 16px;
-    text-align: center;
-    background: var(--soft-pink);
-}
-
-.webring h2 {
-    margin: 0 0 5px;
-    color: var(--ink);
-    font-family: var(--display);
-    font-size: 20px;
-}
-
-.webring p {
-    margin: 0 auto 13px;
-    color: #8c6678;
-    font-family: var(--pixel);
-    font-size: 15px;
-    line-height: 1.35;
-}
-
-.webring nav {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 7px;
-}
-
-.webring nav a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    min-width: 0;
-    padding: 8px 5px;
-    border: 1px dashed var(--hot-pink);
-    color: var(--ink);
-    background: var(--pale-pink);
-    font-family: var(--pixel);
-    font-size: 15px;
-    text-decoration: none;
-}
-
-.webring nav a:hover {
-    color: var(--deep-pink);
-    background: var(--white);
-    transform: translateY(-2px);
-}
-
-.webring-sites {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 5px 12px;
-    margin: 13px 0 0;
-    padding: 12px 2px 0;
-    border-top: 1px dashed var(--mid-pink);
-    list-style: none;
-    text-align: left;
-}
-
-.webring-sites li {
-    min-width: 0;
-    font-family: var(--pixel);
-    font-size: 14px;
-}
-
-.webring-sites li::before {
-    content: "+";
-    margin-right: 5px;
-    color: var(--hot-pink);
-}
-
-.webring-sites a,
-.webring-sites span {
-    color: var(--ink);
-    overflow-wrap: anywhere;
-}
-
-.webring-sites a:hover {
-    color: var(--deep-pink);
-}
-
-.webring-sites .current::before {
-    content: "*";
-    color: var(--deep-pink);
-}
-
-.webring-sites .current span {
-    color: var(--deep-pink);
 }
