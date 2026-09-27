@@ -17,7 +17,7 @@ const buttons = (await loadButtons()).filter((button) => button.src !== ownerBut
         {
             buttons.map((button) => {
                 const fileName = decodeURIComponent(button.src.split("/").pop() || "button");
-                const alt = fileName.replace(/\.[^.]+$/, "");
+                const alt = button.alt ?? fileName.replace(/\.[^.]+$/, "");
 
                 if (button.iframe) {
                     return (

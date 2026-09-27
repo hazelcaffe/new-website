@@ -6,6 +6,7 @@ export type Button = {
     src: string;
     href: string | null;
     iframe: boolean;
+    alt?: string;
 };
 
 type ConfiguredButton = {
@@ -13,6 +14,7 @@ type ConfiguredButton = {
     src?: string;
     href: string | null;
     iframe?: boolean;
+    alt?: string;
 };
 
 /**
@@ -26,7 +28,14 @@ export async function loadButtons(): Promise<Button[]> {
         );
         const configured = (configuredButtons as ConfiguredButton[]).flatMap((button) => {
             if (button.src) {
-                return [{ src: button.src, href: button.href, iframe: button.iframe ?? false }];
+                return [
+                    {
+                        src: button.src,
+                        href: button.href,
+                        iframe: button.iframe ?? false,
+                        alt: button.alt
+                    }
+                ];
             }
 
             if (button.file && available.delete(button.file)) {
