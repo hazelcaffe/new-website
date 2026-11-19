@@ -21,7 +21,6 @@ body.konami::before {
 
 body.konami .site-header,
 body.konami .projects-heading,
-body.konami .service-banner,
 body.konami .window,
 body.konami .mini-panel,
 body.konami .welcome-window .window-body,
@@ -37,7 +36,6 @@ body.konami .owner-button-row {
 body.konami .window,
 body.konami .mini-panel,
 body.konami .site-header,
-body.konami .service-banner,
 body.konami .projects-heading {
     animation: konami-rainbow-glow 2s ease-in-out infinite;
 }

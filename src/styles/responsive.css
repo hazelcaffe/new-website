@@ -9,7 +9,7 @@
 
     .right-column {
         grid-column: 1 / -1;
-        grid-template-columns: 280px minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) 280px;
     }
 }
 

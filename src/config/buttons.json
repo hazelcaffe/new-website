@@ -4,6 +4,16 @@
         "href": "https://bomberfish.ca"
     },
     {
+        "src": "https://izzytizzie.neocities.org/izzy.png",
+        "href": "https://izzytizzie.neocities.org",
+        "alt": "Izzy"
+    },
+    {
+        "src": "https://jew.bio/assets/images/gifs/bog.lat.gif",
+        "href": "https://jew.bio",
+        "alt": "bog"
+    },
+    {
         "src": "https://lunarion31.dev/static/img/buttons/lumi.png",
         "href": "https://lunarion31.dev"
     },
@@ -13,16 +23,10 @@
         "alt": "tiago.zip"
     },
     {
-        "src": "https://ryan.eus/banners/ryan_eus_banner.gif",
-        "href": "https://ryan.eus"
-    },
-
-    {
         "src": "https://incr.easrng.net/badge?key=hazelcaffe",
         "href": null,
         "iframe": true
     },
-
     {
         "file": "lesbian.png",
         "href": null
@@ -39,7 +43,6 @@
         "file": "yuri.gif",
         "href": "https://l.yuri.llc/watatabe"
     },
-
     {
         "file": "astro.png",
         "href": "https://astro.build"
@@ -53,11 +56,6 @@
         "href": "https://qwq.sh/atom.xml"
     },
     {
-        "file": "css.png",
-        "href": null
-    },
-
-    {
         "file": "macos.gif",
         "href": "https://www.apple.com/os/macos/?version=no-hero"
     },
@@ -69,7 +67,6 @@
         "file": "miku.gif",
         "href": "https://en.wikipedia.org/wiki/Hatsune_Miku"
     },
-
     {
         "file": "diva.png",
         "href": "https://store.steampowered.com/app/1761390/Hatsune_Miku_Project_DIVA_Mega_Mix/"

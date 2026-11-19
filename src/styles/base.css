@@ -138,18 +138,6 @@ textarea {
     text-underline-offset: 3px;
 }
 
-.service-banner {
-    margin-top: 14px;
-    padding: 10px 14px;
-    background: var(--pale-pink);
-    text-align: center;
-}
-
-.service-banner a {
-    color: var(--deep-pink);
-    font-weight: 500;
-}
-
 .site-header::before,
 .site-header::after {
     content: "";
