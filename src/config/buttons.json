@@ -23,6 +23,11 @@
         "alt": "tiago.zip"
     },
     {
+        "src": "https://minoa.cat/assets/images/buttons/minoa_88x31.png",
+        "href": "https://minoa.cat",
+        "alt": "minoa"
+    },
+    {
         "src": "https://incr.easrng.net/badge?key=hazelcaffe",
         "href": null,
         "iframe": true
@@ -31,10 +36,7 @@
         "file": "lesbian.png",
         "href": null
     },
-    {
-        "file": "trans.png",
-        "href": null
-    },
+
     {
         "file": "gay.gif",
         "href": null
@@ -43,6 +45,15 @@
         "file": "yuri.gif",
         "href": "https://l.yuri.llc/watatabe"
     },
+    {
+        "file": "miku.gif",
+        "href": "https://en.wikipedia.org/wiki/Hatsune_Miku"
+    },
+    {
+        "file": "diva.png",
+        "href": "https://store.steampowered.com/app/1761390/Hatsune_Miku_Project_DIVA_Mega_Mix/"
+    },
+
     {
         "file": "astro.png",
         "href": "https://astro.build"
@@ -58,17 +69,5 @@
     {
         "file": "macos.gif",
         "href": "https://www.apple.com/os/macos/?version=no-hero"
-    },
-    {
-        "file": "vocaloid.gif",
-        "href": "https://www.vocaloid.com/"
-    },
-    {
-        "file": "miku.gif",
-        "href": "https://en.wikipedia.org/wiki/Hatsune_Miku"
-    },
-    {
-        "file": "diva.png",
-        "href": "https://store.steampowered.com/app/1761390/Hatsune_Miku_Project_DIVA_Mega_Mix/"
     }
 ]

@@ -1,37 +1,5 @@
 ---
 import site from "../config/site.json";
-
-const transColors = ["trans-pink", "trans-blue", "trans-white"];
-const lesbianColors = ["lesbian-orange", "lesbian-white", "lesbian-pink"];
-
-function escapeHtml(character: string): string {
-    return character.replace(
-        /[&<>"']/g,
-        (value) =>
-            (
-                ({
-                    "&": "&amp;",
-                    "<": "&lt;",
-                    ">": "&gt;",
-                    '"': "&quot;",
-                    "'": "&#039;"
-                }) as Record<string, string>
-            )[value]
-    );
-}
-
-function coloredText(text: string, colors: string[]): string {
-    let visibleIndex = 0;
-
-    return [...text]
-        .map((character) => {
-            if (character === " ") return " ";
-            const className = colors[visibleIndex % colors.length];
-            visibleIndex += 1;
-            return `<span class="${className}">${escapeHtml(character)}</span>`;
-        })
-        .join("");
-}
 ---
 
 <section class="window profile-window" id="about" data-profile-card>
@@ -59,7 +27,7 @@ function coloredText(text: string, colors: string[]): string {
         </div>
 
         <h2 class="lesbian-text" aria-label={site.profile.greeting}>
-            <span aria-hidden="true" set:html={coloredText(site.profile.greeting, lesbianColors)} />
+            <span aria-hidden="true" set:html={site.profile.greeting} />
         </h2>
         <p class="small-copy">{site.profile.summary}</p>
 
@@ -69,7 +37,7 @@ function coloredText(text: string, colors: string[]): string {
                 <dd class="trans-text">
                     <span
                         aria-hidden="true"
-                        set:html={coloredText(site.profile.pronouns, transColors)}
+                        set:html={site.profile.pronouns}
                     />
                     <span class="sr-only">{site.profile.pronouns}</span>
                 </dd>
